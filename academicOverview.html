@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College ERP Dashboard</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900" rel="stylesheet" onload="this.rel='stylesheet'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-50: #f0f9ff;
+      --primary-100: #e0f2fe;
+      --primary-200: #bae6fd;
+      --primary-300: #7dd3fc;
+      --primary-400: #38bdf8;
+      --primary-500: #0ea5e9;
+      --primary-600: #0284c7;
+      --primary-700: #0369a1;
+      --primary-800: #075985;
+      --primary-900: #0c4a6e;
+      --primary-950: #082f49;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-[Manrope] text-gray-800">
+
+  <!-- Top Navbar -->
+  <header class="fixed top-0 left-0 right-0 bg-white shadow-md h-16 flex items-center justify-between px-6 z-50">
+    <!-- College Logo/Name -->
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary-600">school</span>
+      <h1 class="text-lg font-bold text-gray-800">IIIT College ERP</h1>
+    </div>
+    
+    <!-- Right side (Bell + Profile) -->
+    <div class="flex items-center gap-6">
+      <!-- Notification Bell -->
+      <button class="relative">
+        <span class="material-symbols-outlined text-gray-600 hover:text-primary-600">notifications</span>
+        <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full">5</span>
+      </button>
+      <!-- Profile Image -->
+      <img src="https://via.placeholder.com/32" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-300 cursor-pointer">
+    </div>
+  </header>
+
+  <!-- Sidebar + Main -->
+  <div class="flex pt-16">
+    
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white shadow-lg hidden lg:flex flex-col p-4">
+      <nav class="space-y-2">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary-50 text-primary-700">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-sm font-medium">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">assignment</span>
+          <span class="text-sm font-medium">Semester Registration</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">check_circle</span>
+          <span class="text-sm font-medium">Attendance</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">book</span>
+          <span class="text-sm font-medium">Subjects</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-sm font-medium">Payments</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64 p-6 sm:p-8 space-y-8">
+
+      <!-- Assignments -->
+      <section class="rounded-lg border border-gray-200 bg-white shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-primary-700 mb-4">📝 Assignments</h2>
+        <ul class="divide-y divide-gray-200">
+          <li class="py-2">Mathematics – <span class="text-gray-600">Due Sept 15</span></li>
+          <li class="py-2">Physics – <span class="text-gray-600">Due Sept 18</span></li>
+          <li class="py-2">Computer Science – <span class="text-gray-600">Due Sept 20</span></li>
+        </ul>
+      </section>
+
+      <!-- Attendance -->
+      <section class="rounded-lg border border-gray-200 bg-white shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-primary-700 mb-4">📊 Attendance Tracker</h2>
+        <div class="flex justify-center">
+          <canvas id="attendanceChart" class="max-w-lg w-full"></canvas>
+        </div>
+      </section>
+
+      <!-- Semester III Courses & Faculty Table -->
+      <section class="rounded-lg border border-gray-200 bg-white shadow-sm p-6">
+        <h2 class="text-xl font-semibold text-primary-700 mb-4">📚 Semester III Courses & Faculty</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full border border-gray-200">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="px-4 py-2 text-left font-semibold">S. No.</th>
+                <th class="px-4 py-2 text-left font-semibold">Faculty Name</th>
+                <th class="px-4 py-2 text-left font-semibold">Course Title</th>
+                <th class="px-4 py-2 text-center font-semibold">Hours per week (L-T-P)</th>
+                <th class="px-4 py-2 text-center font-semibold">Credits</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 text-gray-700">
+              <tr>
+                <td class="px-4 py-2">1.</td>
+                <td class="px-4 py-2">Dr. Sharma</td>
+                <td class="px-4 py-2">Analysis & Design of Algorithm</td>
+                <td class="px-4 py-2 text-center">3-0-2</td>
+                <td class="px-4 py-2 text-center">4</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">2.</td>
+                <td class="px-4 py-2">Prof. Reddy</td>
+                <td class="px-4 py-2">Computer Organization and Architecture</td>
+                <td class="px-4 py-2 text-center">3-0-0</td>
+                <td class="px-4 py-2 text-center">3</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">3.</td>
+                <td class="px-4 py-2">Dr. Gupta</td>
+                <td class="px-4 py-2">Theory of Computation</td>
+                <td class="px-4 py-2 text-center">3-0-0</td>
+                <td class="px-4 py-2 text-center">3</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">4.</td>
+                <td class="px-4 py-2">Prof. Khan</td>
+                <td class="px-4 py-2">Database Management System</td>
+                <td class="px-4 py-2 text-center">3-0-2</td>
+                <td class="px-4 py-2 text-center">4</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">5.</td>
+                <td class="px-4 py-2">Dr. Mehta</td>
+                <td class="px-4 py-2">Python Programming</td>
+                <td class="px-4 py-2 text-center">3-0-2</td>
+                <td class="px-4 py-2 text-center">4</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2">6.</td>
+                <td class="px-4 py-2">Prof. Iyer</td>
+                <td class="px-4 py-2">Probability and Random Process</td>
+                <td class="px-4 py-2 text-center">3-0-0</td>
+                <td class="px-4 py-2 text-center">3</td>
+              </tr>
+            </tbody>
+            <tfoot class="bg-gray-100">
+              <tr>
+                <td colspan="4" class="px-4 py-2 text-right font-semibold">Total Credits</td>
+                <td class="px-4 py-2 text-center font-bold">21</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Chart.js Script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Algorithms', 'COA', 'TOC', 'DBMS', 'Python', 'Probability'],
+        datasets: [{
+          label: 'Attendance %',
+          data: [85, 92, 78, 88, 95, 82],
+          backgroundColor: [
+            '#0ea5e9','#10b981','#f59e0b','#6366f1','#ef4444','#14b8a6'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: { display: true, text: 'Percentage %' }
+          },
+          x: { title: { display: true, text: 'Courses' } }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
