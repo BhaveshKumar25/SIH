@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-50: #f0f9ff;
+        --primary-100: #e0f2fe;
+        --primary-200: #bae6fd;
+        --primary-300: #7dd3fc;
+        --primary-400: #38bdf8;
+        --primary-500: #0ea5e9;
+        --primary-600: #0284c7;
+        --primary-700: #0369a1;
+        --primary-800: #075985;
+        --primary-900: #0c4a6e;
+        --primary-950: #082f49;
+      }
+    </style>
+</head>
+<body class="bg-gray-50">
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden" style="--checkbox-tick-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27white%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e'); --select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(97,117,137)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e'); font-family: Manrope, &quot;Noto Sans&quot;, sans-serif;">
+<div class="flex h-full grow">
+<div class="fixed inset-y-0 left-0 hidden w-64 bg-white shadow-lg lg:block">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-4 py-4">
+<div class="mb-6 px-4">
+<h1 class="text-2xl font-bold text-gray-800">ERP Portal</h1>
+<p class="text-sm text-gray-500">Hostel Application</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg bg-primary-50 px-3 py-3 text-primary-700" href="#">
+<span class="material-symbols-outlined"> person </span>
+<span class="text-sm font-medium">Personal Details</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 hover:bg-gray-100" href="#">
+<span class="material-symbols-outlined"> school </span>
+<span class="text-sm font-medium">Academic Details</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 hover:bg-gray-100" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-sm font-medium">Address Details</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 hover:bg-gray-100" href="#">
+<span class="material-symbols-outlined"> medical_services </span>
+<span class="text-sm font-medium">Medical Background</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-3 text-gray-600 hover:bg-gray-100" href="#">
+<span class="material-symbols-outlined"> flag </span>
+<span class="text-sm font-medium">Declaration</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+<main class="flex-1 lg:ml-64">
+<div class="p-6 sm:p-8 md:p-10">
+<div class="mx-auto max-w-4xl">
+<div class="mb-8">
+<h1 class="text-3xl font-bold tracking-tight text-gray-900">Hostel Application Form</h1>
+<p class="mt-2 text-gray-500">Please fill out the form carefully and accurately.</p>
+</div>
+<div class="space-y-10">
+<section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+<div class="border-b border-gray-200 p-6">
+<h2 class="text-xl font-semibold text-gray-800">Personal Details</h2>
+</div>
+<div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Full Name</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your full name" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Date of Birth</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="DD/MM/YYYY" type="date" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Gender</p>
+<select class="form-select w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+<option>Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Nationality</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your nationality" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Religion</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your religion" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Category</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your category" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Blood Group</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="e.g., A+, O-" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Mobile Number</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your mobile number" type="tel" value=""/>
+</label>
+<label class="col-span-full flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Email ID</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your email ID" type="email" value=""/>
+</label>
+</div>
+</section>
+<section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+<div class="border-b border-gray-200 p-6">
+<h2 class="text-xl font-semibold text-gray-800">Academic Details</h2>
+</div>
+<div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Course</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your course" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Year of Study</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your year of study" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Registration Number</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your registration number" value=""/>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Roll Number</p>
+<input class="form-input w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your roll number" value=""/>
+</label>
+</div>
+</section>
+<section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+<div class="border-b border-gray-200 p-6">
+<h2 class="text-xl font-semibold text-gray-800">Address Details</h2>
+</div>
+<div class="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2">
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Permanent Address</p>
+<textarea class="form-textarea w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your permanent address" rows="4"></textarea>
+</label>
+<label class="col-span-1 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Local Address</p>
+<textarea class="form-textarea w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter your local address" rows="4"></textarea>
+</label>
+</div>
+</section>
+<section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+<div class="border-b border-gray-200 p-6">
+<h2 class="text-xl font-semibold text-gray-800">Medical Background</h2>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
+<div class="col-span-1">
+<p class="pb-2 text-sm font-medium text-gray-700">Allergies</p>
+<div class="flex items-center space-x-4">
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="allergies" type="radio" value="yes"/>
+<span class="ml-2 text-sm text-gray-700">Yes</span>
+</label>
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="allergies" type="radio" value="no"/>
+<span class="ml-2 text-sm text-gray-700">No</span>
+</label>
+</div>
+</div>
+<div class="col-span-1">
+<p class="pb-2 text-sm font-medium text-gray-700">Chronic Illnesses</p>
+<div class="flex items-center space-x-4">
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="chronic_illnesses" type="radio" value="yes"/>
+<span class="ml-2 text-sm text-gray-700">Yes</span>
+</label>
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="chronic_illnesses" type="radio" value="no"/>
+<span class="ml-2 text-sm text-gray-700">No</span>
+</label>
+</div>
+</div>
+<div class="col-span-1">
+<p class="pb-2 text-sm font-medium text-gray-700">Medications</p>
+<div class="flex items-center space-x-4">
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="medications" type="radio" value="yes"/>
+<span class="ml-2 text-sm text-gray-700">Yes</span>
+</label>
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="medications" type="radio" value="no"/>
+<span class="ml-2 text-sm text-gray-700">No</span>
+</label>
+</div>
+</div>
+<div class="col-span-1">
+<p class="pb-2 text-sm font-medium text-gray-700">Dietary Restrictions</p>
+<div class="flex items-center space-x-4">
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="dietary_restrictions" type="radio" value="yes"/>
+<span class="ml-2 text-sm text-gray-700">Yes</span>
+</label>
+<label class="flex items-center">
+<input class="form-radio h-4 w-4 border-gray-300 text-primary-600 focus:ring-primary-500" name="dietary_restrictions" type="radio" value="no"/>
+<span class="ml-2 text-sm text-gray-700">No</span>
+</label>
+</div>
+</div>
+</div>
+<label class="mt-8 flex flex-col">
+<p class="pb-2 text-sm font-medium text-gray-700">Additional Medical Information</p>
+<textarea class="form-textarea w-full rounded-lg border-gray-300 bg-white text-gray-800 shadow-sm focus:border-primary-500 focus:ring-primary-500" placeholder="Enter any additional medical information" rows="4"></textarea>
+</label>
+</div>
+</section>
+<section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+<div class="border-b border-gray-200 p-6">
+<h2 class="text-xl font-semibold text-gray-800">Declaration</h2>
+</div>
+<div class="p-6">
+<label class="flex items-start gap-x-3">
+<input class="h-5 w-5 rounded border-gray-300 bg-white text-primary-600 checked:bg-primary-600 checked:border-primary-600 checked:bg-[image:--checkbox-tick-svg] focus:ring-primary-500" type="checkbox"/>
+<p class="text-sm text-gray-700">
+                        I hereby declare that the information provided above is true and correct to the best of my knowledge.
+                      </p>
+</label>
+</div>
+</section>
+<div class="flex justify-end pt-4">
+<button class="flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+<span>Submit Application</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

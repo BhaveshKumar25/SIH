@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #13a4ec;
+            --secondary-color: #e2e8f0;
+            --background-color: #f8fafc;
+            --text-color: #0f172a;
+            --subtle-text-color: #64748b;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
+<div class="flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--secondary-color)] px-10 py-3">
+<div class="flex items-center gap-4 text-[var(--text-color)]">
+<div class="size-6 text-[var(--primary-color)]">
+<span class="material-symbols-outlined text-4xl"> night_shelter </span>
+</div>
+<h1 class="text-xl font-bold">Hostel Management</h1>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-full size-10 bg-[var(--secondary-color)] text-[var(--text-color)] transition-colors hover:bg-opacity-80">
+<span class="material-symbols-outlined"> notifications </span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzJdPVYYnw2LbjG4oIRERh9HJF4Pi46bhHli9nr6lT7wRcGVD1UNUn5iUYeM4dwr7qyzdMjUqmbI_c5a6h_4C2ioaoJDK22Ef-992-LrLurABqi2Ieqbny1RrEFaSjiB96Bk2FuPcyTAxT9EvaW6ZqSeAqozGiD7pMWIMF03yBFPMUbShV9q4sRxwMT3rEAaIXiYsuxr5oZiTuwq8npTeGtDQGSzEFyPLQdcEpEO_76U6KNvX91RU9w7YDKugiOHCqxYu_nK1YRJGP");'></div>
+</div>
+</header>
+<div class="flex flex-1">
+<aside class="w-1/4 border-r border-[var(--secondary-color)] bg-white p-6">
+<nav class="flex flex-col space-y-2">
+<a class="flex items-center gap-3 rounded-lg bg-gray-100 px-4 py-3 text-[var(--text-color)] font-semibold transition-colors hover:bg-gray-200" href="#">
+<span class="material-symbols-outlined"> dashboard </span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined"> book_online </span>
+<span>Bookings</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined text-[var(--primary-color)]"> bed </span>
+<span class="text-[var(--primary-color)] font-semibold">Occupancy</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined"> group </span>
+<span>Guests</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined"> payments </span>
+<span>Billing</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined"> bar_chart </span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-4 py-3 text-[var(--subtle-text-color)] font-medium transition-colors hover:bg-gray-100 hover:text-[var(--text-color)]" href="#">
+<span class="material-symbols-outlined"> settings </span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<main class="flex-1 p-6">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h1 class="text-[var(--text-color)] text-3xl font-bold">Live Occupancy Tracking</h1>
+<p class="text-[var(--subtle-text-color)]">Last Updated: 10:30 AM</p>
+</div>
+</div>
+<div class="mb-6 border-b border-[var(--secondary-color)]">
+<nav class="flex space-x-8">
+<a class="text-[var(--text-color)] font-semibold border-b-2 border-[var(--primary-color)] pb-3" href="#">Floor 1</a>
+<a class="text-[var(--subtle-text-color)] font-medium border-b-2 border-transparent pb-3 hover:text-[var(--text-color)]" href="#">Floor 2</a>
+<a class="text-[var(--subtle-text-color)] font-medium border-b-2 border-transparent pb-3 hover:text-[var(--text-color)]" href="#">Floor 3</a>
+<a class="text-[var(--subtle-text-color)] font-medium border-b-2 border-transparent pb-3 hover:text-[var(--text-color)]" href="#">Floor 4</a>
+<a class="text-[var(--subtle-text-color)] font-medium border-b-2 border-transparent pb-3 hover:text-[var(--text-color)]" href="#">Floor 5</a>
+</nav>
+</div>
+<div class="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-4">
+<div class="relative flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-red-500 bg-red-500/10 cursor-pointer group hover:bg-red-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-red-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">101</p>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+<p class="text-white text-sm font-semibold">Alex B.</p>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-green-500 bg-green-500/10 cursor-pointer hover:bg-green-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-green-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">102</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-green-500 bg-green-500/10 cursor-pointer hover:bg-green-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-green-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">103</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-red-500 bg-red-500/10 cursor-pointer group hover:bg-red-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-red-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">104</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-yellow-500 bg-yellow-500/10 cursor-pointer hover:bg-yellow-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-yellow-400"> cleaning_services </span>
+<p class="text-[var(--text-color)] font-bold">105</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-green-500 bg-green-500/10 cursor-pointer hover:bg-green-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-green-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">106</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-gray-500 bg-gray-500/10 cursor-pointer hover:bg-gray-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-gray-400"> block </span>
+<p class="text-[var(--text-color)] font-bold">107</p>
+</div>
+<div class="flex flex-col items-center justify-center aspect-square rounded-2xl border-2 border-red-500 bg-red-500/10 cursor-pointer group hover:bg-red-500/20 transition-colors">
+<span class="material-symbols-outlined text-4xl text-red-400"> bed </span>
+<p class="text-[var(--text-color)] font-bold">108</p>
+</div>
+</div>
+</main>
+<aside class="w-80 border-l border-[var(--secondary-color)] p-6 bg-white">
+<h2 class="text-[var(--text-color)] text-xl font-bold mb-6">Quick Actions</h2>
+<div class="space-y-3">
+<button class="flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--primary-color)] py-3 font-bold text-white transition-colors hover:bg-opacity-80">
+<span class="material-symbols-outlined"> receipt_long </span>
+<span>View Booking</span>
+</button>
+<button class="flex w-full items-center justify-center gap-2 rounded-2xl bg-[var(--secondary-color)] py-3 font-bold text-[var(--text-color)] transition-colors hover:bg-opacity-80">
+<span class="material-symbols-outlined"> edit </span>
+<span>Change Status</span>
+</button>
+</div>
+<hr class="border-t border-[var(--secondary-color)] my-8"/>
+<h3 class="text-[var(--text-color)] text-lg font-bold mt-8 mb-4">Occupancy Legend</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="size-4 rounded-full bg-green-500"></div>
+<span class="text-[var(--subtle-text-color)]">Vacant</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-4 rounded-full bg-red-500"></div>
+<span class="text-[var(--subtle-text-color)]">Occupied</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+
+</body></html>

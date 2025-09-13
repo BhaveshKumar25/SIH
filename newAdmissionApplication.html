@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body class="bg-gray-50 text-gray-900" style='font-family: Inter, "Noto Sans", sans-serif;'>
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-3">
+<div class="flex items-center gap-4 text-gray-900">
+<div class="size-6 text-[#1173d4]">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-gray-900 text-lg font-bold leading-tight tracking-[-0.015em]">Acme University</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative">
+<span class="material-symbols-outlined text-gray-600 hover:text-gray-900"> info </span>
+</button>
+</div>
+</header>
+<main class="flex-1 px-10 py-8">
+<div class="mx-auto max-w-5xl">
+<div class="mb-8">
+<h1 class="text-gray-900 tracking-tight text-3xl font-bold">New Admission Application</h1>
+</div>
+<div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
+<form>
+<section class="mb-10">
+<h2 class="text-gray-900 text-xl font-bold leading-tight tracking-[-0.015em] mb-6 border-b pb-4">Student Profile</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="student-name">Student Name</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="student-name" placeholder="Enter Student Name" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="email">Email Address</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="email" placeholder="Enter Email Address" type="email" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="contact-no">Contact No</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="contact-no" placeholder="Enter Contact Number" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="degree">Degree</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="degree" placeholder="Select Degree" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="department">Department</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="department" placeholder="Select Department" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="admission-year">Admission Year</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="admission-year" placeholder="Select Year" value=""/>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<h2 class="text-gray-900 text-xl font-bold leading-tight tracking-[-0.015em] mb-6 border-b pb-4">Personal Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="father-name">Father's Name</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="father-name" placeholder="Enter Father's Name" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="mother-name">Mother's Name</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="mother-name" placeholder="Enter Mother's Name" value=""/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="gender">Gender</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="gender" placeholder="Select Gender" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="dob">Date of Birth</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="dob" placeholder="Select Date of Birth" type="date" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="category">Category</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="category" placeholder="Select Category" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="blood-group">Blood Group</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="blood-group" placeholder="Select Blood Group" value=""/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="community">Community</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="community" placeholder="Enter Community" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="nationality">Nationality</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="nationality" placeholder="Enter Nationality" value=""/>
+</div>
+</div>
+<div class="flex flex-col mt-6">
+<label class="text-gray-700 text-sm font-medium pb-2" for="address">Address</label>
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 min-h-24 placeholder:text-gray-400 p-2 text-sm" id="address" placeholder="Enter Address"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="aadhar-no">Aadhar Card No</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="aadhar-no" placeholder="Enter Aadhar Card Number" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="identity-mark">Identity Mark</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="identity-mark" placeholder="Enter Identity Mark" value=""/>
+</div>
+<div class="flex flex-col md:col-span-2">
+<label class="text-gray-700 text-sm font-medium pb-2" for="admission-date">Admission Date</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="admission-date" placeholder="Select Admission Date" type="date" value=""/>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-gray-900 text-xl font-bold leading-tight tracking-[-0.015em] mb-6 border-b pb-4">Academic Information</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="10th-grade">10th Grade Percentage</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="10th-grade" placeholder="Enter 10th Grade Percentage" value=""/>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="12th-grade">12th Grade Percentage</label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-gray-900 focus:outline-0 focus:ring-2 focus:ring-[#1173d4]/50 border border-gray-300 bg-gray-50 h-10 placeholder:text-gray-400 p-2 text-sm" id="12th-grade" placeholder="Enter 12th Grade Percentage" value=""/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="10th-marksheet">10th Grade Marksheet</label>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100" for="10th-marksheet-file">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-gray-500 mb-2"> cloud_upload </span>
+<p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+<p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+</div>
+<input class="hidden" id="10th-marksheet-file" type="file"/>
+</label>
+</div>
+</div>
+<div class="flex flex-col">
+<label class="text-gray-700 text-sm font-medium pb-2" for="12th-marksheet">12th Grade Marksheet</label>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100" for="12th-marksheet-file">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-gray-500 mb-2"> cloud_upload </span>
+<p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+<p class="text-xs text-gray-500">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+</div>
+<input class="hidden" id="12th-marksheet-file" type="file"/>
+</label>
+</div>
+</div>
+</div>
+</section>
+<div class="flex justify-end pt-8">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-6 bg-[#1173d4] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#0f63b8] transition-colors" type="submit">
+<span class="truncate">Submit Application</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

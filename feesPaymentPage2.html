@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #f0f2f4;
+            --text-primary: #111418;
+            --text-secondary: #617589;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23617589' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        .form-checkbox:checked {
+            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+<div class="relative flex min-h-screen">
+<aside class="w-64 bg-white shadow-md flex flex-col fixed inset-y-0 left-0 z-20">
+<div class="flex items-center gap-3 p-4 border-b">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white">
+<svg class="h-6 w-6" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-gray-800">Acme University</h1>
+</div>
+<nav class="flex-grow p-4">
+<ul>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> home </span> Home</a></li>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> school </span> Academics</a></li>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> person_add </span> Admissions</a></li>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> science </span> Research</a></li>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> deck </span> Campus Life</a></li>
+<li><a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors" href="#"><span class="material-symbols-outlined"> diversity_3 </span> Alumni</a></li>
+<li class="mt-4 border-t pt-4"><a class="flex items-center gap-3 rounded-md px-3 py-2 text-white bg-blue-600 transition-colors font-medium" href="#"><span class="material-symbols-outlined"> payment </span> Fee Payment</a></li>
+</ul>
+</nav>
+<div class="border-t p-4">
+<button aria-label="Settings" class="flex w-full items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined"> settings </span>
+Settings
+</button>
+</div>
+</aside>
+<div class="flex-1 flex flex-col ml-64">
+<header class="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-white px-6">
+<h2 class="text-lg font-semibold text-gray-800">Fee Payment</h2>
+<div class="flex items-center gap-4">
+<button aria-label="Notifications" class="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors">
+<span class="material-symbols-outlined"> notifications </span>
+<span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<button aria-label="User menu">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-transparent hover:border-blue-600 transition-colors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVofnU2S0JB7cLTF-kofp5LxDEdS8FZRifCk9cNAzOd1rXBfnzKEcXPSBIASuZpBUGWFeT3jvM0NHaKqbAroNPZdoNYFEbbyAgdc0dl4SMS8gfuBkpLWkTHq6kEPGjAwjOakIXM5UzB0OhWokLL_2n8WARbTmGeBRx5OWrca6igveK0EmEr-qP9wpPBInJ9BMUonzbiLcsqhRarhPGs7d4sxTDDCvtFwdtdXqCAQcLoMouWy4vvNxD9t6IveG1F07XYiacgEN0r5s7");'></div>
+</button>
+</div>
+</header>
+<main class="flex-grow p-12">
+<div class="w-full max-w-4xl mx-auto space-y-8">
+<div class="mb-12">
+<div class="flex items-center">
+<div class="flex flex-col items-center flex-1">
+<div class="flex items-center justify-center bg-blue-600 text-white rounded-full h-8 w-8 z-10">
+<span class="material-symbols-outlined text-sm"> check </span>
+</div>
+<p class="mt-2 text-sm font-medium text-blue-600">Verification</p>
+</div>
+<div class="flex-1 h-1 bg-blue-600 -mx-1"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="flex items-center justify-center bg-blue-600 text-white rounded-full h-8 w-8 z-10">
+<span class="text-sm font-bold">2</span>
+</div>
+<p class="mt-2 text-sm font-medium text-blue-600">Select Fee Type</p>
+</div>
+<div class="flex-1 h-1 bg-gray-300 -mx-1"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="flex items-center justify-center bg-gray-300 text-gray-500 rounded-full h-8 w-8 z-10">
+<span class="text-sm font-bold">3</span>
+</div>
+<p class="mt-2 text-sm font-medium text-gray-500">Payment</p>
+</div>
+<div class="flex-1 h-1 bg-gray-300 -mx-1"></div>
+<div class="flex flex-col items-center flex-1">
+<div class="flex items-center justify-center bg-gray-300 text-gray-500 rounded-full h-8 w-8 z-10">
+<span class="text-sm font-bold">4</span>
+</div>
+<p class="mt-2 text-sm font-medium text-gray-500">Fee Receipt</p>
+</div>
+</div>
+</div>
+<div class="text-center">
+<h2 class="text-3xl font-extrabold text-gray-900">Select Fee Type</h2>
+<p class="mt-2 text-sm text-gray-600">Please select the fees you want to pay.</p>
+</div>
+<div class="bg-white p-8 shadow-lg rounded-xl space-y-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+<div class="flex items-center space-x-4">
+<input class="form-checkbox h-5 w-5 rounded text-blue-600 focus:ring-blue-500" id="tuition-fee" name="fee" type="checkbox"/>
+<label class="text-sm font-medium text-gray-700" for="tuition-fee">Tuition Fee</label>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+<div class="flex items-center space-x-4">
+<input class="form-checkbox h-5 w-5 rounded text-blue-600 focus:ring-blue-500" id="hostel-fee" name="fee" type="checkbox"/>
+<label class="text-sm font-medium text-gray-700" for="hostel-fee">Hostel Fee</label>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+<div class="flex items-center space-x-4">
+<input class="form-checkbox h-5 w-5 rounded text-blue-600 focus:ring-blue-500" id="exam-fee" name="fee" type="checkbox"/>
+<label class="text-sm font-medium text-gray-700" for="exam-fee">Examination Fee</label>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+<div class="flex items-center space-x-4">
+<input class="form-checkbox h-5 w-5 rounded text-blue-600 focus:ring-blue-500" id="library-fee" name="fee" type="checkbox"/>
+<label class="text-sm font-medium text-gray-700" for="library-fee">Library Fee</label>
+</div>
+</div>
+</div>
+<div class="border-t pt-6 space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700" for="total-amount">Total Amount</label>
+<div class="mt-1 relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="text-gray-500 sm:text-sm">$</span>
+</div>
+<input class="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-blue-500 focus:ring-blue-500 sm:text-sm" id="total-amount" name="total-amount" placeholder="0.00" readonly="" type="text" value="3500.00"/>
+</div>
+</div>
+<button class="group relative flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-3 px-4 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out" type="submit">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-blue-500 group-hover:text-blue-400"> lock </span>
+</span> Proceed to Payment
+                            </button>
+</div>
+</div>
+<p class="mt-8 text-center text-xs text-gray-500">
+                        © 2024 Acme University. All rights reserved. <br/> Your payment is secure and encrypted.
+                    </p>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
