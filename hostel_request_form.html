@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B600%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+        --secondary-color: #f1f5f9;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-slate-50">
+<div class="flex min-h-screen w-full">
+<aside class="w-64 flex-shrink-0 bg-white shadow-lg">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-8">
+<div class="flex items-center gap-2 p-2">
+<span class="material-symbols-outlined text-[var(--primary-color)] text-3xl">school</span>
+<h1 class="text-xl font-bold text-gray-800">Hostel ERP</h1>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-slate-100" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 bg-[var(--primary-color)] text-white" href="#">
+<span class="material-symbols-outlined">description</span>
+<p class="text-sm font-medium">Applications</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-slate-100" href="#">
+<span class="material-symbols-outlined">bed</span>
+<p class="text-sm font-medium">Allocations</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-slate-100" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-sm font-medium">Reports</p>
+</a>
+<a class="flex items-center gap-3 rounded-md px-3 py-2 text-gray-600 hover:bg-slate-100" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-sm font-medium">Settings</p>
+</a>
+</nav>
+</div>
+<div class="border-t border-slate-200 pt-4">
+<div class="flex items-center gap-3">
+<img alt="Admin" class="h-10 w-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0a_QuKKhOAqIxl3Mpt1CD15aVQCjigUM2SCO19kOVf4sKkhhWmD5qEn6DszRbNV0epC4iEwL6zDcbGF4ULDTb1s6xXMcNzuzHK-TftZzx2Fd4EWqn4r755L5axWaE64uKlSxO0KmTp6LQ_ubooNdzK2jkCCiL05gVdXF-hcbjQaTR6uD3Dq9CMEihSC1gdB7W-H80sn20wWmxFzctG3Yu3HBCQxcqbnbQIpb3mfPvr1FMJZGOqUIQ8UVGBZskUjcJRybBQGfslK4q"/>
+<div>
+<p class="text-sm font-semibold text-gray-800">Admin</p>
+<a class="text-xs text-gray-500 hover:text-[var(--primary-color)]" href="#">Log Out</a>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 bg-slate-50 p-8">
+<div class="max-w-7xl mx-auto">
+<header class="mb-8">
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Hostel Applications</h1>
+<p class="text-md text-[var(--text-secondary)] mt-1">Review and manage incoming hostel applications.</p>
+</header>
+<div class="mb-6 border-b border-slate-200">
+<div class="flex gap-8">
+<button class="border-b-2 border-[var(--primary-color)] pb-3 text-sm font-semibold text-[var(--primary-color)]">Pending</button>
+<button class="border-b-2 border-transparent pb-3 text-sm font-medium text-slate-500 hover:text-[var(--primary-color)]">Approved</button>
+<button class="border-b-2 border-transparent pb-3 text-sm font-medium text-slate-500 hover:text-[var(--primary-color)]">Rejected</button>
+</div>
+</div>
+<div class="mb-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full rounded-md border border-slate-300 bg-white py-2 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder-slate-400 focus:border-[var(--primary-color)] focus:outline-none focus:ring-1 focus:ring-[var(--primary-color)]" placeholder="Search by student name or application ID" type="text"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center rounded-lg bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-xl">
+<div class="flex flex-1 items-center gap-4">
+<img alt="Ethan Harper" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLxaeGGTft6OuUyX-IMmblbLA7m6bg76REYMbgZ9yai5Hn-UiFfgEYfMPMHD56KrkrQlAl4nyt46E2HvRDlDcXxDrRNrNBIjaQ0IbwjBh37nX6N2MeAxF-KA0NCzPU8fP_AAQCqKBRDvgUWIWyg6Tw2ICyHG7VCqQEOc2d6a8g_ZZeNgUDvRZAkBDSpXYqd8tp6rL5CPhm54O26rgO7mhBZlaft1FZmaEEWXQ494qZV5NzqSBNl1P4nU3so4xbpmff2vB8sYaa_isA"/>
+<div class="flex-1">
+<h3 class="font-semibold text-[var(--text-primary)]">Ethan Harper</h3>
+<p class="text-sm text-[var(--text-secondary)]">ID: 2024001</p>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Department:</span> Computer Science</p>
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Year:</span> 2nd</p>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Requested Room:</span> 101-A</p>
+</div>
+<div class="flex flex-shrink-0 gap-2">
+<button class="rounded-md bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Accept
+              </button>
+<button class="rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Reject
+              </button>
+</div>
+</div>
+<div class="flex items-center rounded-lg bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-xl">
+<div class="flex flex-1 items-center gap-4">
+<img alt="Olivia Bennett" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZm1ZfgCI82H2KTwVfteizvbXc7TZpnkEGM-bMpIGV__14riFxjGmqL44KTwNC9AMbhYKSddJqtfPnXpYKe0w7YgWN8nyTfoPyJOMEQAkpXDmN-NeviRkSPNxbrTxqZB4blOhZekZkBDnjm7GjxkI31AJmaFj-va14byxsRyte7OCeKLXBDBRl2m0NcGypIXnHyhBfuRGFma9mYdm1BUVrulZNWHAqjrnptEFa39j50ax96ghf-tIg_10BGY2qYC2hkaGbBHLab12Q"/>
+<div class="flex-1">
+<h3 class="font-semibold text-[var(--text-primary)]">Olivia Bennett</h3>
+<p class="text-sm text-[var(--text-secondary)]">ID: 2024002</p>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Department:</span> Electrical Engineering</p>
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Year:</span> 1st</p>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Requested Room:</span> 102-B</p>
+</div>
+<div class="flex flex-shrink-0 gap-2">
+<button class="rounded-md bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Accept
+              </button>
+<button class="rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Reject
+              </button>
+</div>
+</div>
+<div class="flex items-center rounded-lg bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-xl">
+<div class="flex flex-1 items-center gap-4">
+<img alt="Noah Carter" class="h-12 w-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsiQVRVKkB-BctoWFbd8et26YHFbaD0AYda_UF56XtH2BocWdKYwSgY6vQl3Jkm02Q4ndTB9e1yjfyvgOJ21Be2HEJjnZNi7ErzeqsTPsQ6osesXYmRR_UA4KMqRjS-jzA6v8tCImpy6leWWnO3_bsTa7j0KA0kCUDdC5qOT9aMd9juzPbrYCRiau3VaGxfpC2S2TmXlWvCNOKuE9BgxwhZkkO5yFPoqWa2EjS1fNQJpXPbspT6ElNQwl-dwKVjD4k5MXf7br5Aitb"/>
+<div class="flex-1">
+<h3 class="font-semibold text-[var(--text-primary)]">Noah Carter</h3>
+<p class="text-sm text-[var(--text-secondary)]">ID: 2024003</p>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Department:</span> Mechanical Engineering</p>
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Year:</span> 3rd</p>
+</div>
+<div class="flex-1">
+<p class="text-sm text-slate-600"><span class="font-medium text-slate-700">Requested Room:</span> 205-A</p>
+</div>
+<div class="flex flex-shrink-0 gap-2">
+<button class="rounded-md bg-green-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                Accept
+              </button>
+<button class="rounded-md bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Reject
+              </button>
+</div>
+</div>
+</div>
+<div class="mt-8 flex items-center justify-center space-x-1">
+<a class="rounded-md px-3 py-2 text-slate-500 hover:bg-slate-200" href="#">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</a>
+<a class="rounded-md px-4 py-2 text-sm font-medium bg-[var(--primary-color)] text-white" href="#">1</a>
+<a class="rounded-md px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200" href="#">2</a>
+<a class="rounded-md px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200" href="#">3</a>
+<span class="px-4 py-2 text-sm font-medium text-slate-600">...</span>
+<a class="rounded-md px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200" href="#">10</a>
+<a class="rounded-md px-3 py-2 text-slate-500 hover:bg-slate-200" href="#">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</a>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
