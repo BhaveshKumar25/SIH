@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fee Records</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="flex min-h-screen w-full">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r p-4">
+      <h2 class="text-lg font-bold mb-6">Acme University</h2>
+      <nav class="space-y-2">
+        <a href="#" class="block px-3 py-2 rounded hover:bg-gray-100">Dashboard</a>
+        <a href="#" class="block px-3 py-2 rounded bg-blue-100 text-blue-600">Fee Records</a>
+        <a href="#" class="block px-3 py-2 rounded hover:bg-gray-100">Students</a>
+        <a href="#" class="block px-3 py-2 rounded hover:bg-gray-100">Transactions</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-bold mb-6">Fee Records</h1>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white border rounded-lg p-4 shadow">
+          <p class="text-sm font-medium text-gray-600">Total Fees Collected</p>
+          <p class="text-2xl font-bold mt-2">₹4,50,00,000</p>
+        </div>
+        <div class="bg-white border rounded-lg p-4 shadow">
+          <p class="text-sm font-medium text-gray-600">Credited Amount</p>
+          <p class="text-2xl font-bold mt-2 text-green-600">₹5,00,000</p>
+        </div>
+        <div class="bg-white border rounded-lg p-4 shadow">
+          <p class="text-sm font-medium text-gray-600">Debited Amount</p>
+          <p class="text-2xl font-bold mt-2 text-red-600">₹1,25,000</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div>
+          <label class="block text-sm font-medium mb-1">Degree</label>
+          <select class="w-full border rounded p-2">
+            <option>B.Tech</option>
+            <option>M.Tech</option>
+            <option>PhD</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Semester</label>
+          <select class="w-full border rounded p-2">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">Branch</label>
+          <select class="w-full border rounded p-2">
+            <option>CSE</option>
+            <option>ECE</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Fee Table -->
+      <div class="overflow-x-auto bg-white shadow rounded">
+        <table class="min-w-full border border-gray-300">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="border px-4 py-2 text-left">MIS</th>
+              <th class="border px-4 py-2 text-left">Student Name</th>
+              <th class="border px-4 py-2 text-left">Course</th>
+              <th class="border px-4 py-2 text-left">Total Fee</th>
+              <th class="border px-4 py-2 text-left">Status</th>
+              <th class="border px-4 py-2 text-left">Credited Amount</th>
+              <th class="border px-4 py-2 text-left">Debited Amount</th>
+              <th class="border px-4 py-2 text-left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border px-4 py-2">ACME2023001</td>
+              <td class="border px-4 py-2 font-semibold">Sophia Clark</td>
+              <td class="border px-4 py-2">MBA/2023</td>
+              <td class="border px-4 py-2">₹10,00,000</td>
+              <td class="border px-4 py-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Partial</span></td>
+              <td class="border px-4 py-2">₹8,30,000</td>
+              <td class="border px-4 py-2">₹1,70,000</td>
+              <td class="border px-4 py-2">⋮</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">ACME2023002</td>
+              <td class="border px-4 py-2 font-semibold">Liam Harris</td>
+              <td class="border px-4 py-2">BSc/2023</td>
+              <td class="border px-4 py-2">₹8,30,000</td>
+              <td class="border px-4 py-2"><span class="bg-green-100 text-green-700 px-2 py-1 rounded">Paid</span></td>
+              <td class="border px-4 py-2">₹8,30,000</td>
+              <td class="border px-4 py-2">₹0</td>
+              <td class="border px-4 py-2">⋮</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">ACME2023003</td>
+              <td class="border px-4 py-2 font-semibold">Olivia Turner</td>
+              <td class="border px-4 py-2">BA/2023</td>
+              <td class="border px-4 py-2">₹6,65,000</td>
+              <td class="border px-4 py-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">Partial</span></td>
+              <td class="border px-4 py-2">₹5,00,000</td>
+              <td class="border px-4 py-2">₹1,65,000</td>
+              <td class="border px-4 py-2">⋮</td>
+            </tr>
+            <tr>
+              <td class="border px-4 py-2">ACME2023007</td>
+              <td class="border px-4 py-2 font-semibold">Isabella Reed</td>
+              <td class="border px-4 py-2">BA/2023</td>
+              <td class="border px-4 py-2">₹83,000</td>
+              <td class="border px-4 py-2"><span class="bg-red-100 text-red-700 px-2 py-1 rounded">Pending</span></td>
+              <td class="border px-4 py-2">₹0</td>
+              <td class="border px-4 py-2">₹83,000</td>
+              <td class="border px-4 py-2">⋮</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Totals -->
+      <div class="mt-6 flex justify-end gap-10 text-lg font-semibold">
+        <p>Total Credit: <span class="text-green-600">₹23,25,000</span></p>
+        <p>Total Debit: <span class="text-red-600">₹5,18,000</span></p>
+      </div>
+
+      <!-- Pagination -->
+      <div class="flex justify-end items-center gap-2 mt-4">
+        <button class="px-3 py-1 border rounded">Previous</button>
+        <button class="px-3 py-1 border rounded">Next</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
