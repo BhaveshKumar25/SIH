@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semester Registration  Form | College ERP</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900" rel="stylesheet" onload="this.rel='stylesheet'">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style type="text/tailwindcss">
+    :root {
+      --primary-600: #0284c7;
+      --primary-700: #0369a1;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-[Manrope] text-gray-800">
+
+  <!-- Top Navbar -->
+  <header class="fixed top-0 left-0 right-0 bg-white shadow-md h-16 flex items-center justify-between px-6 z-50">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary-600">school</span>
+      <h1 class="text-lg font-bold text-gray-800">IIIT College ERP</h1>
+    </div>
+    <div class="flex items-center gap-6">
+      <button class="relative">
+        <span class="material-symbols-outlined text-gray-600 hover:text-primary-600">notifications</span>
+        <span class="absolute -top-1 -right-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-bold leading-none text-white bg-red-600 rounded-full">3</span>
+      </button>
+      <img src="https://via.placeholder.com/32" alt="Profile" class="w-9 h-9 rounded-full border-2 border-gray-300 cursor-pointer">
+    </div>
+  </header>
+
+  <!-- Sidebar + Main -->
+  <div class="flex pt-16">
+    
+    <!-- Sidebar -->
+    <aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white shadow-lg hidden lg:flex flex-col p-4">
+      <nav class="space-y-2">
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-sm font-medium">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary-50 text-primary-700">
+          <span class="material-symbols-outlined">assignment</span>
+          <span class="text-sm font-medium">Semester Registration</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">check_circle</span>
+          <span class="text-sm font-medium">Attendance</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">book</span>
+          <span class="text-sm font-medium">Subjects</span>
+        </a>
+        <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 text-gray-600">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-sm font-medium">Payments</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-64 p-6 sm:p-8">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Semester Registration</h2>
+
+      <form id="registrationForm" class="space-y-8">
+
+        <!-- Student Details -->
+        <section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div class="border-b border-gray-200 p-6">
+            <h2 class="text-xl font-semibold text-gray-800">Student Details</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Scholar No</span>
+              <input type="text" required class="form-input rounded-lg border-gray-300" placeholder="Enter Scholar Number">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Student Name</span>
+              <input type="text" required class="form-input rounded-lg border-gray-300" placeholder="Enter Full Name">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Father Name</span>
+              <input type="text" required class="form-input rounded-lg border-gray-300" placeholder="Enter Father's Name">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Category</span>
+              <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter your Category">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Contact No</span>
+              <input type="text" required class="form-input rounded-lg border-gray-300" placeholder="+91 ...">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Email ID</span>
+              <input type="email" required class="form-input rounded-lg border-gray-300" placeholder="......@gmail.com">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Program / Degree</span>
+              <select required class="form-select rounded-lg border-gray-300">
+                <option value="">Select Program</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="M.Tech">M.Tech</option>
+                <option value="Ph.D.">Ph.D</option>
+              </select>
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Branch / Department</span>
+              <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter Branch / Department">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Semester</span>
+              <select required class="form-select rounded-lg border-gray-300">
+                <option value="">Select Semester</option>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+                <option value="5">5th</option>
+                <option value="6">6th</option>
+                <option value="7">7th</option>
+                <option value="8">8th</option>
+              </select>
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Academic Year</span>
+              <input type="text" required class="form-input rounded-lg border-gray-300" placeholder="2025-20**">
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Academic Session</span>
+              <select required class="form-select rounded-lg border-gray-300">
+                <option value="">Select</option>
+                <option value="Odd">Odd</option>
+                <option value="Even">Even</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <!-- Residential Details -->
+        <section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div class="border-b border-gray-200 p-6">
+            <h2 class="text-xl font-semibold text-gray-800">Residential Details</h2>
+          </div>
+          <div class="p-6 space-y-6">
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Residential Status</span>
+              <select id="residentialStatus" required class="form-select rounded-lg border-gray-300">
+                <option value="">Select</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Day Scholar">Day Scholar</option>
+              </select>
+            </label>
+            <div id="hostelFields" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <label class="flex flex-col">
+                <span class="text-sm font-medium text-gray-700">Hostel Name</span>
+                <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter Hostel Name">
+              </label>
+              <label class="flex flex-col">
+                <span class="text-sm font-medium text-gray-700">Hostel Room</span>
+                <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter Room Number">
+              </label>
+            </div>
+            <div id="dayScholarField" class="hidden">
+              <label class="flex flex-col">
+                <span class="text-sm font-medium text-gray-700">House Address</span>
+                <textarea class="form-textarea rounded-lg border-gray-300" placeholder="Enter your full address"></textarea>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- Payment Details -->
+        <section class="rounded-lg border border-gray-200 bg-white shadow-sm">
+          <div class="border-b border-gray-200 p-6">
+            <h2 class="text-xl font-semibold text-gray-800">Payment Details</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Payment Mode</span>
+              <select id="paymentMode" required class="form-select rounded-lg border-gray-300">
+                <option value="">Select</option>
+                <option value="icollect">I-Collect</option>
+                <option value="utr">UTR</option>
+              </select>
+            </label>
+            <label class="flex flex-col">
+              <span class="text-sm font-medium text-gray-700">Amount</span>
+              <input type="number" required class="form-input rounded-lg border-gray-300" placeholder="Enter Amount">
+            </label>
+            <div id="icollectField" class="hidden flex flex-col col-span-1">
+              <span class="text-sm font-medium text-gray-700">I-Collect No</span>
+              <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter I-Collect Number">
+            </div>
+            <div id="utrField" class="hidden flex flex-col col-span-1">
+              <span class="text-sm font-medium text-gray-700">UTR No</span>
+              <input type="text" class="form-input rounded-lg border-gray-300" placeholder="Enter UTR Number">
+            </div>
+            <label class="flex flex-col col-span-1">
+              <span class="text-sm font-medium text-gray-700">Payment Date</span>
+              <input type="date" required class="form-input rounded-lg border-gray-300">
+            </label>
+          </div>
+        </section>
+
+        
+        
+   
+        <!-- Buttons -->
+<div class="flex justify-end space-x-4 mt-4">
+  <button type="reset" class="px-6 py-3 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600">
+    Cancel
+  </button>
+       <!-- submit button!-->
+        
+  <button type="submit" class="px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-600">
+    Submit
+  </button>
+</div>
+
+
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const paymentMode = document.getElementById("paymentMode");
+    const icollectField = document.getElementById("icollectField");
+    const utrField = document.getElementById("utrField");
+    const residentialStatus = document.getElementById("residentialStatus");
+    const hostelFields = document.getElementById("hostelFields");
+    const dayScholarField = document.getElementById("dayScholarField");
+    const form = document.getElementById("registrationForm");
+
+    paymentMode.addEventListener("change", function () {
+      icollectField.classList.add("hidden");
+      utrField.classList.add("hidden");
+      if (this.value === "icollect") icollectField.classList.remove("hidden");
+      if (this.value === "utr") utrField.classList.remove("hidden");
+    });
+
+    residentialStatus.addEventListener("change", function () {
+      hostelFields.classList.add("hidden");
+      dayScholarField.classList.add("hidden");
+      if (this.value === "Hostel") hostelFields.classList.remove("hidden");
+      if (this.value === "Day Scholar") dayScholarField.classList.remove("hidden");
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Your form has been submitted!");
+      form.reset();
+      icollectField.classList.add("hidden");
+      utrField.classList.add("hidden");
+      hostelFields.classList.add("hidden");
+      dayScholarField.classList.add("hidden");
+    });
+  </script>
+</body>
+</html>
