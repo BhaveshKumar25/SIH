@@ -1,7 +1,11 @@
 import React from "react";
+import { PiEye } from "react-icons/pi";
+import { FaTrash } from "react-icons/fa";
 import "./Dashboard.css";
 
 const Dashboard = () => {
+  const [dropdownOpen, setDropdownOpen] = React.useState(null);
+
   const cards = [
     { title: "Total Applications", value: "1250" },
     { title: "Pending", value: "350" },
@@ -11,12 +15,11 @@ const Dashboard = () => {
   ];
 
   const applications = [
-    { id: "112415001", name: "Aarav Sharma", course: "CSE(BTECH)", status: "Approved", color: "green" },
-    { id: "112415002", name: "Ananya Mehta", course: "CSE(BTECH)", status: "Under Review", color: "yellow" },
-    { id: "112415003", name: "Rohan Kapoor", course: "CSE(BTECH)", status: "Pending Documents", color: "purple" },
-    { id: "112415004", name: "Priya Nair", course: "CSE(BTECH)", status: "Rejected", color: "red" },
-    { id: "112415005", name: "Kavya Iyer", course: "CSE(BTECH)", status: "Applied", color: "cyan" },
-    
+    { id: "1023457", name: "Aarav Sharma", course: "CSE(BTECH)", status: "Approved", color: "green" },
+    { id: "1023489", name: "Ananya Mehta", course: "CSE(BTECH)", status: "Rejected", color: "red" },
+    { id: "1023526", name: "Rohan Kapoor", course: "CSE(BTECH)", status: "Pending", color: "purple" },
+    { id: "1023562", name: "Priya Nair", course: "CSE(BTECH)", status: "Approved", color: "green" },
+    { id: "1023598", name: "Kavya Iyer", course: "CSE(BTECH)", status: "Pending", color: "purple" },
   ];
 
   const getStatusClass = (color) => {
@@ -30,10 +33,14 @@ const Dashboard = () => {
     return map[color] || "status-default";
   };
 
+  const toggleDropdown = (id) => {
+    setDropdownOpen(dropdownOpen === id ? null : id);
+  };
+
   return (
     <div className="dashboard">
       <main className="main-content">
-        {/* Admissions Overview Heading */}
+        {/* Admissions Overview */}
         <div className="overview">
           <h2>Admissions Overview</h2>
         </div>
@@ -53,7 +60,7 @@ const Dashboard = () => {
           <table className="applications-table">
             <thead>
               <tr>
-                <th>MIS No</th>
+                <th>Application ID</th>
                 <th>Student Name</th>
                 <th>Course/Program</th>
                 <th>Admission Status</th>
@@ -71,15 +78,31 @@ const Dashboard = () => {
                       {app.status}
                     </span>
                   </td>
-                  <td>
-                    <button className="action-btn">⋮</button>
+                  <td className="action-cell">
+                    <button
+                      className="action-btn"
+                      onClick={() => toggleDropdown(app.id)}
+                    >
+                      ⋮
+                    </button>
+                    {dropdownOpen === app.id && (
+                      <div className="dropdown-vertical">
+                        <button className="icon-btn view-btn">
+                          <PiEye size={18} />
+                        </button>
+                        <button className="icon-btn delete-btn">
+                          <FaTrash size={16} />
+                        </button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
           <div className="pagination">
-            <p>Showing 1 to 8 of 1250 results</p>
+            <p>Showing 1 to 5 of 1250 results</p>
             <div className="pagination-buttons">
               <button>Previous</button>
               <button>Next</button>
@@ -98,7 +121,11 @@ export default Dashboard;
 
 
 
-//css
+
+
+
+
+//css code
 /* Root colors */
 :root {
   --primary: #3b82f6;
@@ -118,6 +145,17 @@ export default Dashboard;
 
 .main-content {
   width: 100%;
+}
+
+/* Admissions Overview heading */
+.overview {
+  margin-bottom: 1.5rem;
+}
+
+.overview h2 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--secondary-800);
 }
 
 /* Cards */
@@ -197,6 +235,10 @@ export default Dashboard;
 .status-default { background-color: #f3f4f6; color: #374151; }
 
 /* Actions */
+.action-cell {
+  position: relative;
+}
+
 .action-btn {
   background: transparent;
   border: none;
@@ -207,6 +249,45 @@ export default Dashboard;
 
 .action-btn:hover {
   color: var(--secondary-800);
+}
+
+/* Dropdown vertical */
+.dropdown-vertical {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--secondary-200);
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  min-width: 40px;
+}
+
+.icon-btn {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: var(--secondary-50);
+}
+
+.view-btn {
+  color: #065f46;
+}
+
+.delete-btn {
+  color: #991b1b;
 }
 
 /* Pagination */
@@ -231,14 +312,8 @@ export default Dashboard;
 .pagination-buttons button:hover {
   background: var(--secondary-50);
 }
-/* Admissions Overview heading */
-.overview {
-  margin-bottom: 1.5rem;
-}
 
-.overview h2 {
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: var(--secondary-800);
+/* Row hover */
+.applications-table tr:hover {
+  background-color: var(--secondary-50);
 }
-
