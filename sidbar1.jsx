@@ -13,7 +13,6 @@ const StudentDashboard = () => {
 
   const sections = [
     { name: "Profile", icon: <User size={20} /> },
-    { name: "Academic Overview", icon: <FileText size={20} /> },
     { name: "Hostel Occupancy Tracking", icon: <Home size={20} /> },
     { name: "Hostel Form", icon: <FileText size={20} /> },
     { name: "Semester Registration Form", icon: <Calendar size={20} /> },
@@ -21,6 +20,7 @@ const StudentDashboard = () => {
     { name: "Library Records", icon: <Book size={20} /> },
     { name: "Fee Payment", icon: <CreditCard size={20} /> },
     { name: "Result", icon: <FileText size={20} /> },
+    { name: "Academic Overview", icon: <FileText size={20} /> },
     
   
   ];
