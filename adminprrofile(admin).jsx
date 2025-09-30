@@ -1,4 +1,5 @@
 //App.jsx
+
 import React, { useState } from 'react';
 import './App.css';
 
@@ -188,6 +189,9 @@ export default App;
 
 
 //App.css
+
+
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans:wght@400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
@@ -207,10 +211,17 @@ export default App;
   --c-gray-800: #f9fafb;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .app {
   font-family: "Space Grotesk", "Noto Sans", sans-serif;
   background-color: #f3f4f6;
   min-height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -233,12 +244,16 @@ export default App;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-left {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .logo-icon {
@@ -246,6 +261,7 @@ export default App;
   color: #1f2937;
   cursor: pointer;
   transition: color 0.2s ease;
+  flex-shrink: 0;
 }
 
 .logo-icon:hover {
@@ -256,12 +272,16 @@ export default App;
   font-size: 1.25rem;
   font-weight: 700;
   color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
 }
 
 .notification-btn {
@@ -273,6 +293,7 @@ export default App;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .notification-btn:hover {
@@ -294,23 +315,31 @@ export default App;
   font-size: 1.125rem;
   font-weight: 600;
   color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Main Container */
 .main-container {
   display: flex;
   flex: 1;
+  width: 100%;
 }
 
 /* Sidebar */
 .sidebar {
-  width: 16rem;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
   background-color: var(--c-gray-200);
   padding: 1rem;
   color: #4b5563;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 .nav {
@@ -334,6 +363,7 @@ export default App;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -363,10 +393,14 @@ export default App;
 
 .nav-text {
   font-weight: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nav-footer {
   margin-top: auto;
+  border-top: 1px solid rgba(75, 85, 99, 0.3);
+  padding-top: 1rem;
 }
 
 /* Content Wrapper */
@@ -374,18 +408,23 @@ export default App;
   flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  min-width: 0;
 }
 
 .main-content {
   flex: 1;
   background: rgba(249, 250, 251, 0.5);
   padding: 2rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .profile-section {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  width: 100%;
 }
 
 /* Profile Header */
@@ -395,16 +434,20 @@ export default App;
   justify-content: space-between;
   border-radius: 0.75rem;
   padding: 2rem;
+  width: 100%;
 }
 
 .profile-info {
   display: flex;
   align-items: center;
   gap: 2rem;
+  min-width: 0;
+  flex: 1;
 }
 
 .avatar-container {
   position: relative;
+  flex-shrink: 0;
 }
 
 .avatar {
@@ -443,21 +486,33 @@ export default App;
   font-size: 1.5rem;
 }
 
+.user-details {
+  min-width: 0;
+  flex: 1;
+}
+
 .user-name {
   font-size: 2.25rem;
   font-weight: 700;
   letter-spacing: -0.025em;
   color: #1f2937;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .user-id {
   font-size: 1.125rem;
   color: #4b5563;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .status-section {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .status-btn {
@@ -472,6 +527,7 @@ export default App;
   cursor: pointer;
   box-shadow: 0 4px 14px 0 rgba(74, 222, 128, 0.3);
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .status-btn:hover {
@@ -486,6 +542,7 @@ export default App;
   border: 2px solid #4ade80;
   background-color: #22c55e;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  flex-shrink: 0;
 }
 
 @keyframes pulse {
@@ -501,6 +558,7 @@ export default App;
 .admin-info {
   border-radius: 0.75rem;
   padding: 2rem;
+  width: 100%;
 }
 
 .section-title {
@@ -512,36 +570,67 @@ export default App;
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem 5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
 }
 
 .info-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.info-item:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .info-label {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #6b7280;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .info-value {
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+  }
+  
+  .info-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .header {
     padding: 1rem;
   }
   
   .sidebar {
-    width: 12rem;
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
   }
   
   .main-content {
@@ -562,7 +651,8 @@ export default App;
   }
   
   .info-grid {
-    gap: 1.5rem 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
   }
 }
 
@@ -573,7 +663,15 @@ export default App;
   
   .sidebar {
     width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
     padding: 0.5rem;
+    order: 2;
+  }
+  
+  .content-wrapper {
+    order: 1;
   }
   
   .nav {
@@ -581,14 +679,20 @@ export default App;
     overflow-x: auto;
     padding: 0.5rem 0;
     gap: 0.25rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .nav::-webkit-scrollbar {
+    display: none;
   }
   
   .nav-item {
     flex-shrink: 0;
-    padding: 0.5rem;
+    padding: 0.75rem;
     flex-direction: column;
     gap: 0.25rem;
-    min-width: 4rem;
+    min-width: 5rem;
     text-align: center;
   }
   
@@ -598,6 +702,8 @@ export default App;
   
   .nav-footer {
     margin-top: 0;
+    border-top: none;
+    padding-top: 0;
   }
   
   .profile-header {
@@ -622,13 +728,11 @@ export default App;
   
   .info-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   .info-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    padding: 0.75rem;
   }
   
   .header-right {
@@ -640,9 +744,9 @@ export default App;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .header {
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
   }
   
   .main-content {
@@ -675,8 +779,44 @@ export default App;
     font-size: 1.125rem;
   }
   
+  .info-grid {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.75rem;
+  }
+  
   .university-name {
     display: none;
+  }
+  
+  .profile-header, 
+  .admin-info {
+    padding: 1rem;
+  }
+  
+  .avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+  
+  .user-name {
+    font-size: 1.125rem;
+  }
+  
+  .info-item {
+    padding: 0.5rem;
+  }
+  
+  .info-value {
+    font-size: 0.875rem;
+  }
+  
+  .info-label {
+    font-size: 0.75rem;
   }
 }
 
@@ -700,3 +840,20 @@ export default App;
   user-select: none;
 }
 
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
