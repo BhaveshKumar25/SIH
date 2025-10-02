@@ -11,6 +11,7 @@ import {
   FaUserCircle,
   FaBars,
   FaUserShield,
+  FaCog,
 } from "react-icons/fa";
 
 const AdminDashboard = () => {
@@ -33,15 +34,18 @@ const AdminDashboard = () => {
   return (
     <div className="font-sans h-screen flex flex-col">
       {/* Top Navbar */}
-      <div className="flex justify-between items-center bg-blue-100 px-4 py-3 border-b border-blue-300 relative z-30">
+      <div className="flex justify-between items-center bg-blue-100 px-4 py-3 border-b border-blue-300 relative z-40">
         <div className="flex items-center gap-3">
-          {/* Mobile toggle button: opens/closes sidebar */}
+          {/* Mobile toggle button */}
           <button
             className="md:hidden text-blue-800"
             onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle menu"
           >
             <FaBars className="text-xl" />
           </button>
+
+          {/* Admin icon + label in navbar */}
           <div className="flex items-center gap-2">
             <FaUserShield className="text-2xl text-blue-800" />
             <h2 className="text-xl font-bold text-blue-900">Admin</h2>
@@ -51,58 +55,70 @@ const AdminDashboard = () => {
         <div className="flex gap-4 items-center">
           <FaBell className="cursor-pointer text-lg text-blue-700" />
           <FaUserCircle className="cursor-pointer text-lg text-blue-700" />
-          <button
-            className="bg-red-400 hover:bg-red-500 text-white px-3 py-1 rounded flex items-center gap-2"
-            onClick={handleLogout}
-          >
-            <FaSignOutAlt /> Logout
-          </button>
         </div>
       </div>
 
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-20 md:hidden"
+          className="fixed inset-0 bg-black/30 z-30 md:hidden"
           onClick={() => setSidebarOpen(false)}
-        ></div>
+        />
       )}
 
-      {/* Main Content */}
+      {/* Main Layout */}
       <div className="flex flex-1 overflow-hidden relative z-0">
         {/* Sidebar */}
-        <div
+        <aside
           className={`
-            bg-blue-600 text-white md:w-64 w-64 fixed md:relative z-30
-            top-0 left-0 h-screen
+            bg-blue-600 text-white md:w-64 w-64 fixed md:relative z-40
+            top-0 left-0 h-full flex flex-col justify-between
             transform transition-transform duration-300
             ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           `}
         >
-          {/* Sidebar content */}
-          <div className="mt-16 md:mt-4">
+          {/* Menu items (scrollable if needed) */}
+          <div className="flex-1 mt-4 overflow-y-auto px-2">
             {sections.map((section) => (
               <div
                 key={section.name}
                 className={`px-5 py-3 rounded cursor-pointer mx-2 my-1 flex items-center gap-3 transition ${
-                  activeSection === section.name
-                    ? "bg-blue-500 font-semibold"
-                    : "hover:bg-blue-400"
+                  activeSection === section.name ? "bg-blue-500 font-semibold" : "hover:bg-blue-400"
                 }`}
                 onClick={() => {
                   setActiveSection(section.name);
-                  setSidebarOpen(false); // Close sidebar on mobile after click
+                  setSidebarOpen(false);
                 }}
               >
                 {section.icon}
-                {section.name}
+                <span>{section.name}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="flex-1 p-6 bg-blue-50 md:ml-0 ml-0 overflow-auto">
+          {/* Bottom part: Settings above Logout */}
+          <div className="px-2 pb-4">
+            <div
+              className="px-5 py-3 rounded cursor-pointer mx-2 flex items-center gap-3 hover:bg-blue-400"
+              onClick={() => {
+                setActiveSection("Settings");
+                setSidebarOpen(false);
+              }}
+            >
+              <FaCog /> <span>Settings</span>
+            </div>
+
+            <div
+              className="px-5 py-3 rounded cursor-pointer mx-2 mt-0 flex items-center gap-3 hover:bg-blue-400"
+              onClick={handleLogout}
+            >
+              <FaSignOutAlt /> <span>Logout</span>
+            </div>
+          </div>
+        </aside>
+
+        {/* Page Content */}
+        <main className="flex-1 p-6 bg-blue-50 overflow-auto md:ml-64 ml-0">
           <h3 className="text-lg font-bold mb-2">{activeSection}</h3>
           <p>
             Display <b>{activeSection}</b> data and actions here.
@@ -135,7 +151,7 @@ const AdminDashboard = () => {
               </tbody>
             </table>
           )}
-        </div>
+        </main>
       </div>
     </div>
   );
