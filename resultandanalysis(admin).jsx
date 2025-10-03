@@ -1,15 +1,11 @@
-//App.jsx
-
-
 import React, { useState } from 'react';
-import './App.css';
+import { FaSearch, FaFilter, FaChevronDown } from 'react-icons/fa';
 
-function App() {
+const Result = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('Department');
-  const [selectedSemester, setSelectedSemester] = useState('Semester');
-  const [selectedTopDepartment, setSelectedTopDepartment] = useState('Select Department');
-  const [selectedSection, setSelectedSection] = useState('Select Section');
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
   const studentData = [
     { misNo: '1001', name: 'Liam Harper', department: 'Computer Science', semester: 'Fall 2023', grade: 'A', gradeClass: 'grade-a' },
@@ -27,825 +23,251 @@ function App() {
     { rank: 5, misNo: '1004', name: 'Emma Davis', department: 'Civil Engineering', grade: 'B', gradeClass: 'grade-c' }
   ];
 
-  const handleNotificationClick = () => {
-    alert('Notifications clicked');
+  const filterOptions = [
+    { value: 'misNo', label: 'MIS No.' },
+    { value: 'name', label: 'Name' },
+    { value: 'department', label: 'Department' },
+    { value: 'semester', label: 'Semester' },
+    { value: 'grade', label: 'Grade' }
+  ];
+
+  // Filter students based on search and specific filter
+  const filteredStudents = studentData.filter((student) => {
+    // General search
+    const matchesSearch = searchTerm === '' || 
+      student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.misNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.semester.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.grade.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Specific filter
+    if (selectedFilter && filterValue) {
+      const matchesFilter = student[selectedFilter].toLowerCase().includes(filterValue.toLowerCase());
+      return matchesSearch && matchesFilter;
+    }
+
+    return matchesSearch;
+  });
+
+  const handleFilterClick = () => {
+    setShowFilterDropdown(!showFilterDropdown);
   };
 
-  const handleNavClick = (section) => {
-    console.log(`Navigating to ${section}`);
+  const handleFilterSelect = (filterType) => {
+    setSelectedFilter(filterType);
+    setShowFilterDropdown(false);
+    setFilterValue('');
+  };
+
+  const handleFilterValueChange = (e) => {
+    setFilterValue(e.target.value);
+  };
+
+  const clearFilters = () => {
+    setSelectedFilter('');
+    setFilterValue('');
+    setSearchTerm('');
   };
 
   const handleViewDetails = (misNo) => {
     alert(`Viewing details for student ${misNo}`);
   };
 
+  const getGradeClass = (gradeClass) => {
+    switch (gradeClass) {
+      case 'grade-a':
+        return 'bg-green-100 text-green-800';
+      case 'grade-b':
+        return 'bg-blue-100 text-blue-800';
+      case 'grade-c':
+        return 'bg-yellow-100 text-yellow-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   return (
-    <div className="app">
-      <div className="main-layout">
-        <aside className="sidebar">
-          <div className="sidebar-content">
-            <div className="sidebar-top">
-              <h1 className="sidebar-title">ERP Admin</h1>
-              <nav className="nav">
-                <button className="nav-item" onClick={() => handleNavClick('dashboard')}>
-                  <span className="material-symbols-outlined">dashboard</span>
-                  <p>Dashboard</p>
-                </button>
-                <button className="nav-item active" onClick={() => handleNavClick('results')}>
-                  <span className="material-symbols-outlined">analytics</span>
-                  <p>Results</p>
-                </button>
-                <button className="nav-item" onClick={() => handleNavClick('analytics')}>
-                  <span className="material-symbols-outlined">monitoring</span>
-                  <p>Analytics</p>
-                </button>
-                <button className="nav-item" onClick={() => handleNavClick('reports')}>
-                  <span className="material-symbols-outlined">description</span>
-                  <p>Reports</p>
-                </button>
-                <button className="nav-item" onClick={() => handleNavClick('settings')}>
-                  <span className="material-symbols-outlined">settings</span>
-                  <p>Settings</p>
-                </button>
-              </nav>
+    <div className="min-h-screen bg-gray-50">
+      <div className="p-8">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Results & Analysis</h1>
+          <p className="text-gray-600">Manage student results and analyze performance.</p>
+        </div>
+
+        {/* Student Results Card */}
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Student Results</h2>
+          
+          {/* Search and Filter Section */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="relative flex-1">
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <input
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                placeholder="Search by student name or MIS No."
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <div className="sidebar-bottom">
-              <button className="nav-item" onClick={() => handleNavClick('help')}>
-                <span className="material-symbols-outlined">help_outline</span>
-                <p>Help and Docs</p>
+            
+            {/* Filter Section */}
+            <div className="relative">
+              <button 
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium min-w-[100px] justify-center"
+                onClick={handleFilterClick}
+              >
+                <FaFilter className="text-sm" />
+                <span>Filter</span>
+                <FaChevronDown className={`text-sm transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} />
               </button>
-              <button className="nav-item" onClick={() => handleNavClick('feedback')}>
-                <span className="material-symbols-outlined">campaign</span>
-                <p>Feedback</p>
-              </button>
+              
+              {/* Filter Dropdown */}
+              {showFilterDropdown && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                  <div className="py-2">
+                    {filterOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
+                        onClick={() => handleFilterSelect(option.value)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </aside>
 
-        <main className="main-content">
-          <header className="header">
-            <div className="header-content">
-              <button className="notification-btn" onClick={handleNotificationClick}>
-                <span className="material-symbols-outlined">notifications</span>
-                <span className="notification-dot"></span>
-              </button>
-              <div className="user-profile">
-                <img 
-                  alt="Admin's profile photo" 
-                  className="profile-img" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6vn_F3ouvoyzZ9dqr2lRf1RldtzrT1FaUl3PWE_sDSGSnzAXN3bOYbZaiMb19S9t2yFSNltMOnjm0L_TAtgwUyG9397RCujzKbc-rj51iXKw_4ssK1z5AYsC7B43QGZhVSj5DopYSU0sF7dIo-BFfKl13A6ODpbZE76hhweHoqh3TLRKTRTjtVX8VSmtzLpQ01x8sHh_Ebu_BbcXkpbKfsnunQ1K_5NF4dZ2hCqHn_3Gh1rCNcJRu9TA107alQWytnmpJ_XIDhU-a"
+          {/* Active Filter Display */}
+          {selectedFilter && (
+            <div className="px-4 py-3 border border-gray-200 rounded-md bg-gray-50 mb-4">
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600">
+                  Filter by {filterOptions.find(opt => opt.value === selectedFilter)?.label}:
+                </span>
+                <input
+                  type="text"
+                  placeholder={`Enter ${selectedFilter}...`}
+                  value={filterValue}
+                  onChange={handleFilterValueChange}
+                  className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 />
-                <div className="user-info">
-                  <p className="user-name">Admin Name</p>
-                  <p className="user-id">ID: 9999</p>
-                </div>
-              </div>
-            </div>
-          </header>
-
-          <div className="content">
-            <div className="page-header">
-              <div className="page-title-section">
-                <h1 className="page-title">Results & Analysis</h1>
-                <p className="page-description">Manage student results and analyze performance.</p>
-              </div>
-            </div>
-
-            <div className="card">
-              <h2 className="card-title">Student Results</h2>
-              <div className="filters">
-                <div className="search-container">
-                  <span className="material-symbols-outlined search-icon">search</span>
-                  <input 
-                    className="search-input"
-                    placeholder="Search by student name or MIS No."
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-                <select 
-                  className="select-input"
-                  value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
                 >
-                  <option>Department</option>
-                  <option>Computer Science</option>
-                  <option>Electrical Engineering</option>
-                </select>
-                <select 
-                  className="select-input"
-                  value={selectedSemester}
-                  onChange={(e) => setSelectedSemester(e.target.value)}
-                >
-                  <option>Semester</option>
-                  <option>Fall 2023</option>
-                  <option>Spring 2023</option>
-                </select>
-              </div>
-
-              <div className="table-container">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>MIS No.</th>
-                      <th>Name</th>
-                      <th>Department</th>
-                      <th>Semester</th>
-                      <th>Overall Grade</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {studentData.map((student) => (
-                      <tr key={student.misNo}>
-                        <td>{student.misNo}</td>
-                        <td className="student-name">{student.name}</td>
-                        <td>{student.department}</td>
-                        <td>{student.semester}</td>
-                        <td>
-                          <span className={`grade-badge ${student.gradeClass}`}>
-                            {student.grade}
-                          </span>
-                        </td>
-                        <td>
-                          <button 
-                            className="action-link"
-                            onClick={() => handleViewDetails(student.misNo)}
-                          >
-                            View Details
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="pagination">
-                <p className="pagination-info">Showing 1 to 5 of 50 results</p>
-                <div className="pagination-controls">
-                  <button className="pagination-btn">
-                    <span className="material-symbols-outlined">chevron_left</span>
-                  </button>
-                  <button className="pagination-btn active">1</button>
-                  <button className="pagination-btn">2</button>
-                  <button className="pagination-btn">3</button>
-                  <span className="pagination-dots">...</span>
-                  <button className="pagination-btn">10</button>
-                  <button className="pagination-btn">
-                    <span className="material-symbols-outlined">chevron_right</span>
-                  </button>
-                </div>
+                  Clear filters
+                </button>
               </div>
             </div>
+          )}
 
-            <div className="card">
-              <div className="card-header">
-                <h2 className="card-title">Top 5 Performers</h2>
-                <div className="top-filters">
-                  <select 
-                    className="select-input"
-                    value={selectedTopDepartment}
-                    onChange={(e) => setSelectedTopDepartment(e.target.value)}
-                  >
-                    <option>Select Department</option>
-                    <option>Computer Science</option>
-                    <option>Electrical Engineering</option>
-                    <option>Mechanical Engineering</option>
-                    <option>Civil Engineering</option>
-                    <option>Chemical Engineering</option>
-                  </select>
-                  <select 
-                    className="select-input"
-                    value={selectedSection}
-                    onChange={(e) => setSelectedSection(e.target.value)}
-                  >
-                    <option>Select Section</option>
-                    <option>Section A</option>
-                    <option>Section B</option>
-                    <option>Section C</option>
-                  </select>
-                </div>
-              </div>
+          {/* Table */}
+          <div className="overflow-x-auto mb-4">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">MIS No.</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Semester</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overall Grade</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {filteredStudents.map((student) => (
+                  <tr key={student.misNo} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{student.misNo}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{student.department}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{student.semester}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getGradeClass(student.gradeClass)}`}>
+                        {student.grade}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <button 
+                        className="text-blue-600 hover:text-blue-900 text-sm font-medium transition-colors"
+                        onClick={() => handleViewDetails(student.misNo)}
+                      >
+                        View Details
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-              <div className="table-container">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>MIS No.</th>
-                      <th>Name</th>
-                      <th>Department</th>
-                      <th>Overall Grade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topPerformers.map((student) => (
-                      <tr key={student.misNo}>
-                        <td className="student-name">{student.rank}</td>
-                        <td>{student.misNo}</td>
-                        <td className="student-name">{student.name}</td>
-                        <td>{student.department}</td>
-                        <td>
-                          <span className={`grade-badge ${student.gradeClass}`}>
-                            {student.grade}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          {/* Pagination */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p className="text-sm text-gray-600">
+              Showing {filteredStudents.length > 0 ? '1' : '0'} to {filteredStudents.length} of {filteredStudents.length} results
+              {(selectedFilter || searchTerm) && (
+                <span className="ml-2 text-blue-600">
+                  (filtered from {studentData.length} total)
+                </span>
+              )}
+            </p>
+            <div className="flex items-center gap-1">
+              <button className="flex items-center justify-center w-8 h-8 border border-gray-300 bg-white text-gray-500 rounded hover:bg-gray-50 transition-colors">
+                ‹
+              </button>
+              <button className="flex items-center justify-center w-8 h-8 border border-blue-500 bg-blue-500 text-white rounded">1</button>
+              <button className="flex items-center justify-center w-8 h-8 border border-gray-300 bg-white text-gray-500 rounded hover:bg-gray-50 transition-colors">2</button>
+              <button className="flex items-center justify-center w-8 h-8 border border-gray-300 bg-white text-gray-500 rounded hover:bg-gray-50 transition-colors">3</button>
+              <span className="px-2 text-gray-500">...</span>
+              <button className="flex items-center justify-center w-8 h-8 border border-gray-300 bg-white text-gray-500 rounded hover:bg-gray-50 transition-colors">10</button>
+              <button className="flex items-center justify-center w-8 h-8 border border-gray-300 bg-white text-gray-500 rounded hover:bg-gray-50 transition-colors">
+                ›
+              </button>
             </div>
           </div>
-        </main>
+        </div>
+
+        {/* Top 5 Performers Card */}
+        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Top 5 Performers</h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">MIS No.</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Overall Grade</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {topPerformers.map((student) => (
+                  <tr key={student.misNo} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.rank}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{student.misNo}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{student.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{student.department}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getGradeClass(student.gradeClass)}`}>
+                        {student.grade}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+};
 
-export default App;
-
-
-
-
-
-//App.css
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
-
-/* CSS Variables */
-:root {
-  --primary-50: #eef6ff;
-  --primary-100: #dbeeff;
-  --primary-200: #bbdfff;
-  --primary-300: #88cfff;
-  --primary-400: #55bfff;
-  --primary-500: #137fec;
-  --primary-600: #0d69d7;
-  --primary-700: #0a52b3;
-  --primary-800: #073b8e;
-  --primary-900: #052c74;
-  --primary-950: #031a4f;
-}
-
-/* Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', 'Noto Sans', sans-serif;
-  background-color: #f9fafb;
-  line-height: 1.5;
-}
-
-.app {
-  min-height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Main Layout */
-.main-layout {
-  display: flex;
-  height: 100vh;
-  flex: 1;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 320px;
-  flex-shrink: 0;
-  background-color: white;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.sidebar-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
-.sidebar-top {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sidebar-title {
-  padding: 0 0.75rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
-  border: none;
-  background: none;
-  color: #374151;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
-  text-align: left;
-}
-
-.nav-item:hover {
-  background-color: #f3f4f6;
-}
-
-.nav-item.active {
-  background-color: var(--primary-50);
-  color: var(--primary-600);
-}
-
-.nav-item .material-symbols-outlined {
-  color: #6b7280;
-}
-
-.nav-item.active .material-symbols-outlined {
-  color: var(--primary-600);
-}
-
-.nav-item p {
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin: 0;
-}
-
-.sidebar-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  overflow-x: hidden;
-}
-
-/* Header */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(8px);
-  padding: 0 2rem;
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.notification-btn {
-  position: relative;
-  padding: 0.5rem;
-  border-radius: 50%;
-  border: none;
-  background: none;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.notification-btn:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-
-.notification-dot {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background-color: var(--primary-500);
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.profile-img {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1f2937;
-  margin: 0;
-}
-
-.user-id {
-  font-size: 0.75rem;
-  color: #6b7280;
-  margin: 0;
-}
-
-/* Content */
-.content {
-  padding: 2rem;
-}
-
-.page-header {
-  margin-bottom: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.page-title-section {
-  display: flex;
-  flex-direction: column;
-}
-
-.page-title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-}
-
-.page-description {
-  color: #6b7280;
-  margin: 0;
-}
-
-/* Card */
-.card {
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  background-color: white;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.card-title {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #111827;
-}
-
-.card-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Filters */
-.filters {
-  margin-bottom: 1rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1rem;
-}
-
-.top-filters {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.search-container {
-  position: relative;
-}
-
-.search-icon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  background-color: #f9fafb;
-  font-size: 0.875rem;
-  outline: none;
-  transition: all 0.2s;
-}
-
-.search-input:focus {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.1);
-}
-
-.select-input {
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  background-color: #f9fafb;
-  font-size: 0.875rem;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.select-input:focus {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 3px rgba(19, 127, 236, 0.1);
-}
-
-/* Table */
-.table-container {
-  overflow-x: auto;
-  margin-bottom: 1rem;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-.data-table thead {
-  background-color: #f9fafb;
-}
-
-.data-table th {
-  padding: 0.75rem 1.5rem;
-  text-align: left;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #6b7280;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.data-table td {
-  padding: 1rem 1.5rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-  border-bottom: 1px solid #e5e7eb;
-  white-space: nowrap;
-}
-
-.student-name {
-  font-weight: 500;
-  color: #111827;
-}
-
-/* Grade Badges */
-.grade-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.125rem 0.625rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.grade-a {
-  background-color: #dcfce7;
-  color: #166534;
-}
-
-.grade-b {
-  background-color: #dbeafe;
-  color: #1e40af;
-}
-
-.grade-c {
-  background-color: #fef3c7;
-  color: #92400e;
-}
-
-/* Action Link */
-.action-link {
-  background: none;
-  border: none;
-  color: var(--primary-600);
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.action-link:hover {
-  color: var(--primary-900);
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
-.pagination-info {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin: 0;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.pagination-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  background: white;
-  color: #6b7280;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.pagination-btn:hover {
-  background-color: #f3f4f6;
-}
-
-.pagination-btn.active {
-  background-color: var(--primary-500);
-  color: white;
-  border-color: var(--primary-500);
-}
-
-.pagination-dots {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 280px;
-  }
-  
-  .content {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .main-layout {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-  }
-  
-  .sidebar-content {
-    padding: 1rem;
-  }
-  
-  .filters {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  
-  .top-filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-  
-  .card-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .pagination {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-  }
-  
-  .pagination-controls {
-    justify-content: center;
-  }
-  
-  .header {
-    padding: 0 1rem;
-  }
-  
-  .content {
-    padding: 1rem;
-  }
-  
-  .page-title {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .data-table th,
-  .data-table td {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
-  
-  .nav-item {
-    padding: 0.75rem;
-  }
-  
-  .nav-item p {
-    font-size: 0.8rem;
-  }
-  
-  .sidebar-title {
-    font-size: 1.1rem;
-  }
-  
-  .user-profile {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .table-container {
-    font-size: 0.75rem;
-  }
-  
-  .data-table th,
-  .data-table td {
-    padding: 0.375rem 0.5rem;
-  }
-  
-  .pagination-btn {
-    width: 1.75rem;
-    height: 1.75rem;
-    font-size: 0.75rem;
-  }
-  
-  .card {
-    padding: 1rem;
-  }
-  
-  .header-content {
-    gap: 0.5rem;
-  }
-}
+export default Result;
