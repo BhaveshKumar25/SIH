@@ -1,917 +1,326 @@
-//App.jsx
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState } from 'react';
+import { FaSearch, FaFilter, FaChevronDown, FaEllipsisH } from 'react-icons/fa';
 
-const App = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+const StaffTable = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [filterValue, setFilterValue] = useState('');
 
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const staffData = [
+    {
+      id: 'EMP001',
+      name: 'Sophia Carter',
+      phone: '555-123-4567',
+      email: 'sophia.carter@email.com',
+      department: 'Sales',
+      designation: 'Sales Manager',
+      status: 'Active'
+    },
+    {
+      id: 'EMP002',
+      name: 'Ethan Bennett',
+      phone: '555-987-6543',
+      email: 'ethan.bennett@email.com',
+      department: 'Marketing',
+      designation: 'Marketing Specialist',
+      status: 'Active'
+    },
+    {
+      id: 'EMP003',
+      name: 'Olivia Hayes',
+      phone: '555-246-8013',
+      email: 'olivia.hayes@email.com',
+      department: 'Engineering',
+      designation: 'Software Engineer',
+      status: 'Active'
+    },
+    {
+      id: 'EMP004',
+      name: 'Liam Foster',
+      phone: '555-369-1470',
+      email: 'liam.foster@email.com',
+      department: 'HR',
+      designation: 'HR Coordinator',
+      status: 'Active'
+    },
+    {
+      id: 'EMP005',
+      name: 'Ava Morgan',
+      phone: '555-753-9512',
+      email: 'ava.morgan@email.com',
+      department: 'Finance',
+      designation: 'Financial Analyst',
+      status: 'Inactive'
+    }
+  ];
+
+  const filterOptions = [
+    { value: 'id', label: 'Employee ID' },
+    { value: 'name', label: 'Employee Name' },
+    { value: 'phone', label: 'Contact (Phone)' },
+    { value: 'email', label: 'Contact (Email)' },
+    { value: 'department', label: 'Department' },
+    { value: 'designation', label: 'Designation' },
+    { value: 'status', label: 'Status' }
+  ];
+
+  // Filter staff based on search and specific filter
+  const filteredStaff = staffData.filter((staff) => {
+    // General search
+    const matchesSearch = searchTerm === '' || 
+      staff.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.department.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.designation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      staff.status.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // Specific filter
+    if (selectedFilter && filterValue) {
+      let filterField = staff[selectedFilter];
+      if (selectedFilter === 'phone' || selectedFilter === 'email') {
+        // For contact filters, search in both phone and email
+        const matchesContact = staff.phone.toLowerCase().includes(filterValue.toLowerCase()) ||
+                              staff.email.toLowerCase().includes(filterValue.toLowerCase());
+        return matchesSearch && matchesContact;
+      } else {
+        const matchesFilter = filterField.toLowerCase().includes(filterValue.toLowerCase());
+        return matchesSearch && matchesFilter;
+      }
+    }
+
+    return matchesSearch;
+  });
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleFilterClick = () => {
+    setShowFilterDropdown(!showFilterDropdown);
+  };
+
+  const handleFilterSelect = (filterType) => {
+    setSelectedFilter(filterType);
+    setShowFilterDropdown(false);
+    setFilterValue('');
+  };
+
+  const handleFilterValueChange = (e) => {
+    setFilterValue(e.target.value);
+  };
+
+  const clearFilters = () => {
+    setSelectedFilter('');
+    setFilterValue('');
+    setSearchTerm('');
+  };
+
+  const handleActionClick = (staffId) => {
+    console.log('Action clicked for:', staffId);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    console.log('Page changed to:', page);
+  };
 
   return (
-    <div className="dashboard-root">
-      {/* Sidebar */}
-      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <div>
-          <div className="sidebar-header">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#137fec" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-            </svg>
-            <h1>Acme ERP</h1>
-          </div>
-          <div className="sidebar-links">
-            <a href="#" className="sidebar-link">Dashboard</a>
-            <a href="#" className="sidebar-link active">Staff Records</a>
-            <a href="#" className="sidebar-link">Departments</a>
-            <a href="#" className="sidebar-link">Roles</a>
-            <a href="#" className="sidebar-link">Attendance</a>
-            <a href="#" className="sidebar-link">Payroll</a>
-            <a href="#" className="sidebar-link">Reports</a>
+    <div className="min-h-screen bg-gray-50">
+      <main className="p-6">
+        {/* Page Header */}
+        <div className="mb-6">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900">Staff Records</h3>
+            <p className="text-gray-500 mt-1">Manage all staff members in your organization.</p>
           </div>
         </div>
-        <div className="sidebar-bottom">
-          <a href="#" className="sidebar-link">Settings</a>
-          <a href="#" className="sidebar-link">Logout</a>
+        
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <p className="text-sm font-medium text-gray-600 mb-2">Total Staff</p>
+            <p className="text-2xl font-bold text-gray-900">250</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <p className="text-sm font-medium text-gray-600 mb-2">Active</p>
+            <p className="text-2xl font-bold text-green-500">220</p>
+          </div>
+          <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <p className="text-sm font-medium text-gray-600 mb-2">Inactive</p>
+            <p className="text-2xl font-bold text-red-500">30</p>
+          </div>
         </div>
-      </div>
 
-      {/* Main */}
-      <div className="main">
-        <header className="header">
-          <div className="header-left">
-            <button onClick={toggleSidebar}>
-              <span className="material-symbols-outlined">menu</span>
-            </button>
-            <h2>Staff Records</h2>
+        {/* Table Container */}
+        <div className="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+          {/* Table Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 border-b border-gray-200">
+            <div className="relative flex-1">
+              <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+              <input
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                placeholder="Search by name, employee ID, department, designation, role, status"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
+            
+            {/* Filter Section */}
+            <div className="relative">
+              <button 
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium min-w-[100px] justify-center"
+                onClick={handleFilterClick}
+              >
+                <FaFilter className="text-sm" />
+                <span>Filter</span>
+                <FaChevronDown className={`text-sm transition-transform ${showFilterDropdown ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {/* Filter Dropdown */}
+              {showFilterDropdown && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                  <div className="py-2">
+                    {filterOptions.map((option) => (
+                      <button
+                        key={option.value}
+                        className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors"
+                        onClick={() => handleFilterSelect(option.value)}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="header-right">
-            <button><span className="material-symbols-outlined">notifications</span></button>
-            <div className="profile">
-              <div className="profile-img" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAFmS5s17tPut5GqelHYZGQT7shvBNF7s6xh_VzAFDZykSSVZNv3-9aGp2oJ9-bDeF7oSyOHdpNBlJbBNtrci0sLl-GYOaCaLcc7wIgr1fmt-FFMz54kdvG0yJHaZEYxsjdMZ7H6iYtnrIA6IaLzn8Wipn814UVf2BRD8cDwUXey05m-vPkBan5LWPnhY7jeCtKG_s2qZJ1G6SVoILOkbpFEPKfja-HsGg9LZxUBngFnPVmtgNdmS-Wr5QnTCFl_SV5zyot8lOYhNTS')"}}></div>
-              <div className="profile-info">
-                <p className="name">Admin User</p>
-                <p className="email">admin@acme.com</p>
+
+          {/* Active Filter Display */}
+          {selectedFilter && (
+            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
+              <div className="flex items-center gap-4">
+                <span className="text-sm text-gray-600">
+                  Filter by {filterOptions.find(opt => opt.value === selectedFilter)?.label}:
+                </span>
+                <input
+                  type="text"
+                  placeholder={`Enter ${selectedFilter}...`}
+                  value={filterValue}
+                  onChange={handleFilterValueChange}
+                  className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  Clear filters
+                </button>
               </div>
             </div>
-          </div>
-        </header>
-
-        <main className="p-6">
-          {/* Stats Cards */}
-          <div className="stats-grid">
-            <div className="stats-card">
-              <p>Total Staff</p>
-              <p>250</p>
-            </div>
-            <div className="stats-card">
-              <p>Active</p>
-              <p style={{color: "#16a34a"}}>220</p>
-            </div>
-            <div className="stats-card">
-              <p>Inactive</p>
-              <p style={{color: "#b91c1c"}}>30</p>
-            </div>
-          </div>
-
+          )}
+          
           {/* Table */}
-          <div className="table-container">
-            <table>
-              <thead>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th>Employee ID</th>
-                  <th>Employee</th>
-                  <th>Contact</th>
-                  <th>Department</th>
-                  <th>Designation</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Employee ID</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Employee</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Contact</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Department</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Designation</th>
+                  <th className="px-6 py-3 text-left font-medium text-gray-600 uppercase tracking-wider">Status</th>
+                  <th className="px-6 py-3 text-right font-medium text-gray-600 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>EMP001</td>
-                  <td>Sophia Carter</td>
-                  <td>555-123-4567</td>
-                  <td>Sales</td>
-                  <td>Sales Manager</td>
-                  <td><span className="status-active">Active</span></td>
-                  <td>...</td>
-                </tr>
-                <tr>
-                  <td>EMP005</td>
-                  <td>Ava Morgan</td>
-                  <td>555-753-9512</td>
-                  <td>Finance</td>
-                  <td>Financial Analyst</td>
-                  <td><span className="status-inactive">Inactive</span></td>
-                  <td>...</td>
-                </tr>
+              <tbody className="divide-y divide-gray-200">
+                {filteredStaff.map((staff) => (
+                  <tr key={staff.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-gray-500">{staff.id}</td>
+                    <td className="px-6 py-4">
+                      <p className="font-medium text-gray-900">{staff.name}</p>
+                    </td>
+                    <td className="px-6 py-4">
+                      <p className="font-medium text-gray-500">{staff.phone}</p>
+                      <p className="text-gray-400 text-xs">{staff.email}</p>
+                    </td>
+                    <td className="px-6 py-4 text-gray-500">{staff.department}</td>
+                    <td className="px-6 py-4 text-gray-500">{staff.designation}</td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                        staff.status === 'Active' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {staff.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-right">
+                      <button 
+                        className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
+                        onClick={() => handleActionClick(staff.id)}
+                      >
+                        <FaEllipsisH />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-        </main>
-      </div>
+          
+          {/* Pagination */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-4 py-3 border-t border-gray-200">
+            <p className="text-sm text-gray-500">
+              Showing {filteredStaff.length > 0 ? '1' : '0'} to {filteredStaff.length} of {filteredStaff.length} results
+              {(selectedFilter || searchTerm) && (
+                <span className="ml-2 text-blue-600">
+                  (filtered from {staffData.length} total)
+                </span>
+              )}
+            </p>
+            <div className="flex items-center gap-2">
+              <button 
+                className="flex items-center justify-center w-8 h-8 border border-gray-300 text-gray-500 bg-white rounded transition-colors hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                ‹
+              </button>
+              {[1, 2, 3].map(page => (
+                <button
+                  key={page}
+                  className={`flex items-center justify-center w-8 h-8 border border-gray-300 bg-white rounded transition-colors text-sm ${
+                    currentPage === page ? 'bg-gray-100' : 'hover:bg-gray-100'
+                  }`}
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </button>
+              ))}
+              <span className="text-gray-500 px-1">...</span>
+              <button 
+                className="flex items-center justify-center w-8 h-8 border border-gray-300 text-gray-500 bg-white rounded transition-colors hover:bg-gray-100"
+                onClick={() => handlePageChange(50)}
+              >
+                50
+              </button>
+              <button 
+                className="flex items-center justify-center w-8 h-8 border border-gray-300 text-gray-500 bg-white rounded transition-colors hover:bg-gray-100"
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
 
-
-
-
-//App.css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
-
-/* Global Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
-
-/* Root Container - Full Width */
-.dashboard-root {
-  display: flex;
-  min-height: 100vh;
-  width: 100vw;
-  font-family: 'Inter', sans-serif;
-  background-color: #f9fafb;
-  position: relative;
-}
-
-/* Sidebar - Desktop */
-.sidebar {
-  width: 280px;
-  min-width: 280px;
-  max-width: 280px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  flex-shrink: 0;
-  z-index: 100;
-}
-
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 24px;
-}
-
-.sidebar-header h1 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1d1d1d;
-  letter-spacing: -0.025em;
-}
-
-.sidebar-links {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-}
-
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #6b7280;
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.sidebar-link:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
-  transform: translateX(2px);
-}
-
-.sidebar-link.active {
-  background-color: #1a73e8;
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
-}
-
-.sidebar-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 24px;
-  padding-top: 16px;
-  border-top: 1px solid #e5e7eb;
-}
-
-/* Main Content Area */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  width: 100%;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 16px 32px;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  width: 100%;
-  flex-shrink: 0;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: #6b7280;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-
-.menu-button:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
-}
-
-.header h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  letter-spacing: -0.025em;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.notification-button {
-  background: none;
-  border: 1px solid #e5e7eb;
-  color: #6b7280;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.notification-button:hover {
-  background-color: #f3f4f6;
-  color: #1f2937;
-  border-color: #d1d5db;
-}
-
-/* Profile Section */
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.profile:hover {
-  background-color: #f9fafb;
-}
-
-.profile-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  border: 2px solid #e5e7eb;
-  flex-shrink: 0;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-info p {
-  margin: 0;
-}
-
-.profile-info .name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1f2937;
-  line-height: 1.2;
-}
-
-.profile-info .email {
-  font-size: 0.75rem;
-  color: #6b7280;
-  line-height: 1.2;
-}
-
-/* Main Content Padding */
-.p-6 {
-  padding: 32px;
-  flex: 1;
-  width: 100%;
-  overflow-x: auto;
-}
-
-/* Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 32px;
-  width: 100%;
-}
-
-.stats-card {
-  background-color: #fff;
-  padding: 24px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-  text-align: center;
-}
-
-.stats-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.stats-card p:first-child {
-  color: #6b7280;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin: 0 0 8px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.stats-card p:last-child {
-  color: #1f2937;
-  font-weight: 700;
-  font-size: 2rem;
-  margin: 0;
-  line-height: 1;
-}
-
-/* Table Container */
-.table-container {
-  background-color: #fff;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  width: 100%;
-}
-
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
-}
-
-.table-container th,
-.table-container td {
-  padding: 16px;
-  text-align: left;
-  font-size: 0.875rem;
-  border-bottom: 1px solid #f3f4f6;
-  vertical-align: middle;
-}
-
-.table-container th {
-  background-color: #f9fafb;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #6b7280;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-.table-container td {
-  color: #1f2937;
-  font-weight: 500;
-}
-
-.table-container tbody tr:hover {
-  background-color: #f9fafb;
-}
-
-.table-container tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Status Badges */
-.status-active {
-  background-color: #dcfce7;
-  color: #166534;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-block;
-}
-
-.status-inactive {
-  background-color: #fee2e2;
-  color: #991b1b;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: inline-block;
-}
-
-/* Material Icons */
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  font-size: 20px;
-}
-
-/* Sidebar Overlay for Mobile */
-.sidebar-overlay {
-  display: none;
-}
-
-/* RESPONSIVE DESIGN */
-
-/* Large Desktop (1400px+) */
-@media screen and (min-width: 1400px) {
-  .p-6 {
-    padding: 40px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-  }
-  
-  .sidebar {
-    width: 320px;
-    min-width: 320px;
-    max-width: 320px;
-  }
-  
-  .header {
-    padding: 20px 40px;
-  }
-}
-
-/* Desktop (1200px - 1399px) */
-@media screen and (min-width: 1200px) and (max-width: 1399px) {
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  
-  .p-6 {
-    padding: 32px;
-  }
-}
-
-/* Medium Desktop/Laptop (1024px - 1199px) */
-@media screen and (min-width: 1024px) and (max-width: 1199px) {
-  .sidebar {
-    width: 260px;
-    min-width: 260px;
-    max-width: 260px;
-  }
-  
-  .p-6 {
-    padding: 24px;
-  }
-  
-  .header {
-    padding: 16px 24px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  
-  .stats-card {
-    padding: 20px;
-  }
-  
-  .stats-card p:last-child {
-    font-size: 1.75rem;
-  }
-}
-
-/* Tablet Portrait (768px - 1023px) */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .dashboard-root {
-    position: relative;
-  }
-  
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    width: 280px;
-    min-width: 280px;
-    max-width: 280px;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-
-  .menu-button {
-    display: block;
-  }
-  
-  .main {
-    width: 100%;
-  }
-  
-  .header {
-    padding: 16px 20px;
-  }
-  
-  .p-6 {
-    padding: 20px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  
-  .stats-card {
-    padding: 16px;
-  }
-  
-  .stats-card p:last-child {
-    font-size: 1.5rem;
-  }
-  
-  .table-container {
-    overflow-x: auto;
-  }
-  
-  .table-container th,
-  .table-container td {
-    padding: 12px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-  }
-}
-
-/* Mobile Landscape (640px - 767px) */
-@media screen and (min-width: 640px) and (max-width: 767px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1000;
-    transform: translateX(-100%);
-    width: 260px;
-    min-width: 260px;
-    max-width: 260px;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-
-  .menu-button {
-    display: block;
-  }
-  
-  .header {
-    padding: 14px 16px;
-  }
-  
-  .header h2 {
-    font-size: 1.25rem;
-  }
-  
-  .p-6 {
-    padding: 16px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  
-  .stats-card {
-    padding: 14px;
-  }
-  
-  .stats-card p:first-child {
-    font-size: 0.8rem;
-  }
-  
-  .stats-card p:last-child {
-    font-size: 1.4rem;
-  }
-  
-  .profile-info {
-    display: none;
-  }
-  
-  .table-container {
-    overflow-x: auto;
-  }
-  
-  .table-container th,
-  .table-container td {
-    padding: 10px 8px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-  }
-}
-
-/* Mobile Portrait (480px - 639px) */
-@media screen and (min-width: 480px) and (max-width: 639px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1000;
-    transform: translateX(-100%);
-    width: 240px;
-    min-width: 240px;
-    max-width: 240px;
-    padding: 20px 12px;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 999;
-  }
-
-  .menu-button {
-    display: block;
-  }
-  
-  .header {
-    padding: 12px 12px;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .header h2 {
-    font-size: 1.125rem;
-  }
-  
-  .header-right {
-    gap: 8px;
-  }
-  
-  .profile-info {
-    display: none;
-  }
-  
-  .profile-img {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .p-6 {
-    padding: 12px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
-  
-  .stats-card {
-    padding: 12px;
-  }
-  
-  .stats-card p:first-child {
-    font-size: 0.75rem;
-    margin-bottom: 6px;
-  }
-  
-  .stats-card p:last-child {
-    font-size: 1.25rem;
-  }
-  
-  .table-container {
-    overflow-x: auto;
-  }
-  
-  .table-container th,
-  .table-container td {
-    padding: 8px 6px;
-    font-size: 0.7rem;
-    white-space: nowrap;
-  }
-  
-  .status-active,
-  .status-inactive {
-    padding: 2px 8px;
-    font-size: 0.65rem;
-  }
-}
-
-/* Small Mobile (320px - 479px) */
-@media screen and (max-width: 479px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1000;
-    transform: translateX(-100%);
-    width: 220px;
-    min-width: 220px;
-    max-width: 220px;
-    padding: 16px 10px;
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar-overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-  }
-  
-  .sidebar-header h1 {
-    font-size: 1rem;
-  }
-  
-  .sidebar-link {
-    padding: 10px 12px;
-    font-size: 0.8rem;
-  }
-
-  .menu-button {
-    display: block;
-  }
-  
-  .header {
-    padding: 10px 8px;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .header h2 {
-    font-size: 1rem;
-  }
-  
-  .header-right {
-    gap: 6px;
-  }
-  
-  .profile-info {
-    display: none;
-  }
-  
-  .profile-img {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .notification-button {
-    padding: 6px;
-  }
-  
-  .p-6 {
-    padding: 8px;
-  }
-  
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  
-  .stats-card {
-    padding: 10px;
-  }
-  
-  .stats-card p:first-child {
-    font-size: 0.7rem;
-    margin-bottom: 4px;
-  }
-  
-  .stats-card p:last-child {
-    font-size: 1.1rem;
-  }
-  
-  .table-container {
-    overflow-x: auto;
-    border-radius: 8px;
-  }
-  
-  .table-container th,
-  .table-container td {
-    padding: 6px 4px;
-    font-size: 0.65rem;
-    white-space: nowrap;
-  }
-  
-  .status-active,
-  .status-inactive {
-    padding: 1px 6px;
-    font-size: 0.6rem;
-  }
-}
-
-/* Prevent body scroll when sidebar is open on mobile */
-@media screen and (max-width: 1023px) {
-  body.sidebar-open {
-    overflow: hidden;
-  }
-}
-export default App;
+export default StaffTable;
