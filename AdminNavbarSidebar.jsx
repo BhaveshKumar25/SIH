@@ -23,12 +23,12 @@ const AdminDashboard = () => {
   const location = useLocation();
 
   const sections = [
-    { name: "Profile", path: "/profile", icon: <FaUser /> },
-    { name: "Admission Record Page", path: "/admissions", icon: <FaFileAlt /> },
-    { name: "Hostel Record", path: "/hostel", icon: <FaHome /> },
-    { name: "Fee Record", path: "/fees", icon: <FaMoneyBill /> },
-    { name: "Result Record", path: "/results", icon: <FaChartBar /> },
-    { name: "Staff Details", path: "/staff", icon: <FaUsers /> },
+    { name: "Profile", path: "/AdminProfile", icon: <FaUser /> },
+    { name: "Admission Record Page", path: "/AdmissionRecord", icon: <FaFileAlt /> },
+    { name: "Hostel Record", path: "/HostelAllocation", icon: <FaHome /> },
+    { name: "Fee Record", path: "/FeeRecords", icon: <FaMoneyBill /> },
+    { name: "Result Record", path: "/Results", icon: <FaChartBar /> },
+    { name: "Staff Details", path: "/Staff", icon: <FaUsers /> },
   ];
 
   const bottomItems = [
